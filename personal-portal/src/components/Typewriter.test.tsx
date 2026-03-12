@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import * as fc from 'fast-check';
-import { typewriterReducer, TypewriterState } from './Typewriter';
+import { typewriterReducer, type TypewriterState } from './Typewriter';
 
 // ─── Property 3: 打字机字符间隔约束 ──────────────────────────────────────────
 // Feature: personal-portal, Property 3: 打字机字符间隔约束
