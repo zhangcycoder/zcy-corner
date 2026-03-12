@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Auto Approve Common Commands",
+  "description": "自动批准常用的 shell 命令，如 npm install、npm run、git 等，无需每次手动确认",
+  "version": "1",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": [
+      "shell"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Check if the shell command being executed is a common development command (like npm install, npm run, npx, git, yarn, pnpm, ls, cat, mkdir, cp, mv, rm). If it is, approve it automatically and proceed without asking the user for confirmation."
+  },
+  "workspaceFolderName": "zcy-corner",
+  "shortName": "auto-approve-common-commands"
+}

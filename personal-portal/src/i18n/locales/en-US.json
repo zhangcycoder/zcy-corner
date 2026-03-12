@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "name": "YOUR NAME",
+    "cta": "Explore →",
+    "roles": ["Full Stack Developer", "React Enthusiast", "Open Source Contributor"]
+  },
+  "about": {
+    "title": "About Me",
+    "location": "Location",
+    "status": "Status",
+    "statusValue": "Open to Work",
+    "bio": ["Hi, I'm a full-stack developer passionate about technology.", "Focused on building high-performance, user-friendly web apps.", "Enthusiastic about open source and cutting-edge tech."]
+  },
+  "skills": {
+    "title": "Tech Stack"
+  },
+  "projects": {
+    "title": "Projects",
+    "viewDetail": "View Details",
+    "backToList": "← Back to Projects",
+    "demo": "Live Demo",
+    "techStack": "Tech Stack"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Feel free to reach out for collaboration or tech discussions"
+  },
+  "notFound": {
+    "title": "404 - Page Not Found",
+    "desc": "The page you are looking for does not exist.",
+    "back": "Return to Home"
+  }
+}

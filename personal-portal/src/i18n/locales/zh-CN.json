@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "about": "关于",
+    "skills": "技能",
+    "projects": "项目",
+    "contact": "联系"
+  },
+  "hero": {
+    "name": "YOUR NAME",
+    "cta": "探索 →",
+    "roles": ["全栈开发者", "React 爱好者", "开源贡献者"]
+  },
+  "about": {
+    "title": "关于我",
+    "location": "所在地",
+    "status": "当前状态",
+    "statusValue": "开放合作",
+    "bio": ["你好，我是一名热爱技术的全栈开发者。", "专注于构建高性能、用户友好的 Web 应用。", "热衷于开源社区与前沿技术探索。"]
+  },
+  "skills": {
+    "title": "技能栈"
+  },
+  "projects": {
+    "title": "项目作品",
+    "viewDetail": "查看详情",
+    "backToList": "← 返回项目列表",
+    "demo": "在线演示",
+    "techStack": "技术栈"
+  },
+  "contact": {
+    "title": "联系我",
+    "subtitle": "有合作意向或技术交流，欢迎联系"
+  },
+  "notFound": {
+    "title": "404 - 页面不存在",
+    "desc": "你访问的页面不存在。",
+    "back": "返回首页"
+  }
+}

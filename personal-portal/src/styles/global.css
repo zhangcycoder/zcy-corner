@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #0a0a0f;
+  --color-bg-secondary: #0d1117;
+  --color-accent-cyan: #00ffff;
+  --color-accent-blue: #0080ff;
+  --color-text-primary: #e0e0e0;
+  --color-text-muted: rgba(200, 220, 255, 0.75);
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* CSS 变量（供内联样式使用） */
+:root {
+  --bg-primary: #0a0a0f;
+  --accent-cyan: #00ffff;
+  --accent-blue: #0080ff;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-primary);
+  font-family: var(--font-mono);
+  color: #e0e0e0;
+  scroll-behavior: smooth;
+}
