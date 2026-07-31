@@ -1,6 +1,7 @@
 import { profile } from '../content/resume/profile'
 import { usePageMeta } from '../hooks/usePageMeta'
 
+/** @name 履历页 */
 export default function ResumePage() {
   usePageMeta({
     title: `${profile.displayName} · ${profile.role}｜履历`,

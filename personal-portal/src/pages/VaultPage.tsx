@@ -13,6 +13,7 @@ export default function VaultPage() {
   const { i18n } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
   const locale = i18n.resolvedLanguage ?? i18n.language
+  const isEnglish = locale === 'en-US'
   const treasures = getPublishedTreasures()
   const treasureTypes = getTreasureTypes()
   const requestedType = searchParams.get('type')
@@ -55,10 +56,28 @@ export default function VaultPage() {
         onChange={updateType}
       />
 
-      <section className="vault-page__collection" aria-live="polite">
+      <section
+        className="vault-page__collection"
+        aria-labelledby="vault-collection-title"
+      >
+        <h2 className="visually-hidden" id="vault-collection-title">
+          {isEnglish ? 'Treasure collection' : '藏品集合'}
+        </h2>
         <div className="vault-page__result-meta">
           <span>INDEX / {selectedType.toUpperCase()}</span>
-          <span>{String(visibleTreasures.length).padStart(2, '0')} RESULTS</span>
+          <span aria-hidden="true">
+            {String(visibleTreasures.length).padStart(2, '0')} RESULTS
+          </span>
+          <span
+            className="visually-hidden"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            {isEnglish
+              ? `${visibleTreasures.length} treasures found`
+              : `找到 ${visibleTreasures.length} 件藏品`}
+          </span>
         </div>
         <div className="treasure-grid">
           {visibleTreasures.map((treasure, index) => (

@@ -5,6 +5,14 @@
     "resume": "简历",
     "about": "关于"
   },
+  "a11y": {
+    "openNavigationMenu": "打开导航菜单",
+    "closeNavigationMenu": "关闭导航菜单",
+    "mainNavigation": "主要导航",
+    "languageSwitcher": "语言选择",
+    "switchToChinese": "切换为中文",
+    "switchToEnglish": "切换为英文"
+  },
   "common": {
     "viewAll": "查看全部",
     "backHome": "返回首页",

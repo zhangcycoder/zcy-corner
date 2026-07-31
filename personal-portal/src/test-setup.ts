@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next'
 import zhCN from './i18n/locales/zh-CN.json'
 import enUS from './i18n/locales/en-US.json'
 
-// Initialize i18n for tests — use en-US so nav labels match navItems.label
+// Keep existing component assertions stable by initializing tests in English.
 if (!i18n.isInitialized) {
   i18n.use(initReactI18next).init({
     resources: {

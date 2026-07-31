@@ -46,7 +46,9 @@ export default function SiteHeader({ scene }: SiteHeaderProps) {
           type="button"
           aria-expanded={isMenuOpen}
           aria-controls="site-navigation"
-          aria-label={isMenuOpen ? '关闭导航菜单' : '打开导航菜单'}
+          aria-label={isMenuOpen
+            ? t('a11y.closeNavigationMenu')
+            : t('a11y.openNavigationMenu')}
           onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
         >
           <span className="site-menu-button__icon" aria-hidden="true">
@@ -60,7 +62,7 @@ export default function SiteHeader({ scene }: SiteHeaderProps) {
           id="site-navigation"
           data-open={isMenuOpen}
         >
-          <nav aria-label="主要导航">
+          <nav aria-label={t('a11y.mainNavigation')}>
             <ul className="site-navigation__list">
               {NAV_ITEMS.map(({ end, labelKey, to }) => (
                 <li key={to}>
@@ -78,11 +80,15 @@ export default function SiteHeader({ scene }: SiteHeaderProps) {
             </ul>
           </nav>
 
-          <div className="language-switcher" aria-label="语言选择">
+          <div
+            className="language-switcher"
+            aria-label={t('a11y.languageSwitcher')}
+          >
             <button
               type="button"
               className={currentLanguage === 'zh-CN' ? 'is-active' : undefined}
               aria-pressed={currentLanguage === 'zh-CN'}
+              aria-label={t('a11y.switchToChinese')}
               onClick={() => changeLanguage('zh-CN')}
             >
               中
@@ -92,6 +98,7 @@ export default function SiteHeader({ scene }: SiteHeaderProps) {
               type="button"
               className={currentLanguage === 'en-US' ? 'is-active' : undefined}
               aria-pressed={currentLanguage === 'en-US'}
+              aria-label={t('a11y.switchToEnglish')}
               onClick={() => changeLanguage('en-US')}
             >
               EN

@@ -5,6 +5,14 @@
     "resume": "Résumé",
     "about": "About"
   },
+  "a11y": {
+    "openNavigationMenu": "Open navigation menu",
+    "closeNavigationMenu": "Close navigation menu",
+    "mainNavigation": "Main navigation",
+    "languageSwitcher": "Language selection",
+    "switchToChinese": "Switch to Chinese",
+    "switchToEnglish": "Switch to English"
+  },
   "common": {
     "viewAll": "View all",
     "backHome": "Back home",

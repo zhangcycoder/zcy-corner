@@ -363,8 +363,14 @@
   line-height: 1.75;
 }
 
-.not-found-page__link {
+.not-found-page__actions {
   margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.not-found-page__link {
   display: inline-flex;
   align-items: center;
   color: var(--scene-text);

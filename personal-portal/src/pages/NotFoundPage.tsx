@@ -6,11 +6,16 @@ export default function NotFoundPage() {
 
   return (
     <section className="gallery-page not-found-page">
-      <h1>{t('notFound.title')}</h1>
+      <h1>404</h1>
       <p className="not-found-page__description">{t('notFound.desc')}</p>
-      <Link className="not-found-page__link" to="/">
-        {t('notFound.back')}
-      </Link>
+      <div className="not-found-page__actions">
+        <Link className="not-found-page__link" to="/">
+          {t('common.backHome')}
+        </Link>
+        <Link className="not-found-page__link" to="/vault">
+          {t('common.backVault')}
+        </Link>
+      </div>
     </section>
   )
 }
