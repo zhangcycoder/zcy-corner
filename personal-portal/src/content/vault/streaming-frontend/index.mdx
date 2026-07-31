@@ -1,0 +1,77 @@
+# 前端接住 LLM 的流式输出
+
+模型逐 token 吐字,前端要做的不是「等它说完再显示」,而是把这条会断、会抖、会到一半的流优雅地接住。听起来只是把字符串往 DOM 里塞,真正难的都在边角。
+
+## 为什么不能等一个完整 JSON
+
+一次性返回 JSON 的问题很直接:请求阻塞到整段生成完成,可能好几秒白屏,首字节体验极差。
+
+这里有一条被反复引用的阈值——Nielsen 的响应时间界限:~100ms 内有反馈才「像即时」,1s 内还能保持心流。整段答案跑 8 秒无所谓,但第一个 token 必须落在 100ms 量级。流式的全部意义就在这:用「首 token 很快」换掉「整段很慢」的观感。
+
+## 传输层:SSE,还是 fetch 手撕流
+
+SSE(`text/event-stream`)的语义天然契合逐 token:服务端 `data: ...\n\n` 一帧一帧推。但浏览器原生的 `EventSource` 有两个硬伤——只能 GET,且不能自定义请求头,于是放不下 `Authorization`、也带不了 POST body。而多数 LLM 端点恰恰是「带鉴权的 POST + SSE 响应」这个形状(OpenAI、Anthropic 皆如此)。
+
+所以实践里更常见的是 `fetch` + `ReadableStream` 自己读流、手动解 SSE 分帧:
+
+```ts
+const res = await fetch(url, { method: 'POST', body, signal })
+const reader = res.body!.getReader()
+const decoder = new TextDecoder()
+let buffer = ''
+while (true) {
+  const { value, done } = await reader.read()
+  if (done) break
+  // stream: true —— 一个网络块可能从中间切断一个多字节 UTF-8 字符
+  buffer += decoder.decode(value, { stream: true })
+  // 一个 SSE 事件也可能被拆到多个网络块,必须缓冲到 \n\n 边界再解析
+  let idx
+  while ((idx = buffer.indexOf('\n\n')) !== -1) {
+    const frame = buffer.slice(0, idx)
+    buffer = buffer.slice(idx + 2)
+    // 解析 `data: ...`,拿出增量文本
+  }
+}
+```
+
+两个隐形 bug 都写在注释里:多字节字符被网络块切断(靠 `TextDecoder` 的 `stream: true` 跨块拼回),以及 SSE 事件被切断(必须攒到 `\n\n` 再解)。少了任意一条,中文和 emoji 就会时不时冒出乱码。
+
+## 渲染层:增量、光标、别抖
+
+增量渲染本身不难:把新 token 追加到一个字符串,重渲染即可。末尾挂一个跳动光标(`▍` 之类),既是「还在生成」的信号,也顺手掩盖了单帧之间的空隙。
+
+真正的性能坑在**合帧(coalescing)**。token 到达速度经常快过屏幕的 60fps,若每来一个 token 就 setState,会把框架的协调与浏览器的布局反复打爆。做法是把 token 先攒进一个 ref,用 `requestAnimationFrame` 每帧只 flush 一次——把「网络读取」和「绘制」解耦。这一步最容易被忽略,却是长回答不卡的关键。
+
+## 滚动锚定:自动跟随,但别抢用户
+
+只有当用户「贴着底部」时才自动滚动跟随;一旦他往上翻去读历史,就停住,别把他硬拽回底部。
+
+判据是一行算术:`scrollHeight - scrollTop - clientHeight < 阈值` 视为贴底(阈值给几十 px 容差)。每次追加内容**之前**先记住当前是否贴底,追加**之后**再据此决定要不要滚。顺序反了,就会永远判成「没贴底」而失灵。
+
+## 可中断:AbortController
+
+把 `AbortController` 的 `signal` 传进 `fetch`,「停止」按钮调 `controller.abort()`,正在挂起的 `reader.read()` 会以 `AbortError` reject,流干净地断开。
+
+关键收尾是:把 `AbortError`(用户主动停)和真实网络错误区分开——前者不该弹「出错了」,它是一次正常的用户操作。
+
+## 流到一半的 Markdown
+
+边流边把 Markdown 渲成 HTML,会撞上「半截语法」:没闭合的 ``` 代码围栏、只写了一半的 `**加粗`、断在 `[文字](` 的链接。逐帧朴素解析会闪烁、会错位,代码块尤其明显——围栏没配对上,后面整段都被吞进代码里。
+
+三种缓解,各有取舍:
+
+- **安全边界**:只在换行处重新解析,牺牲一点实时性换稳定。
+- **自动补全**:解析前先给未闭合的构造补一个合成的收尾标记(比如临时补上一行结束围栏),解析完再丢弃。
+- **纯文本兜底**:检测到有未闭合构造时,该段先按纯文本渲染,闭合后再切回富文本。
+
+没有银弹,取决于你更怕闪烁还是更怕短暂错版。
+
+## 断流与重试
+
+网络中途断开,会留下半截输出。要么恢复(需要服务端支持续传或幂等),要么整段重来。无论哪种,都别丢掉已经到手的部分——展示已生成内容,再给一个重试入口,比清空重来的体验好得多。
+
+---
+
+这套模式的可跑版本见 [流式生成 UI](/vault/streaming-ui)——那个 demo 用客户端模拟的 token 流演示增量渲染、跳动光标、滚动锚定与中断,不触网、不调用真实模型,把上面的边角都摊在一个可交互的面板里。
+
+> 流式的难点从来不是「把字显示出来」,而是在一条会断、会抖、会半截的流上,始终让界面显得稳。

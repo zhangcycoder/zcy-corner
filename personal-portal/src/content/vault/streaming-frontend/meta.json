@@ -1,0 +1,12 @@
+{
+  "slug": "streaming-frontend",
+  "title": { "zh-CN": "前端接住 LLM 的流式输出", "en-US": "Receiving LLM Streams on the Frontend" },
+  "summary": { "zh-CN": "从传输(SSE 还是 fetch 手撕流)、增量渲染与合帧、滚动锚定、可中断,到「流到一半的 Markdown」——把逐 token 输出稳稳接进界面的真实工程细节。", "en-US": "From transport (SSE vs hand-rolled fetch streaming) to incremental render, frame coalescing, scroll anchoring, abort, and the half-written-Markdown problem — the real engineering of receiving a token stream in the UI." },
+  "type": "note",
+  "tags": ["AI 交互", "流式渲染", "前端工程"],
+  "createdAt": "2026-07-31",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": false,
+  "cover": "/covers/streaming-frontend.svg"
+}

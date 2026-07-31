@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
+  <rect width="1200" height="720" fill="#0b0c0f"/>
+  <g stroke="#97999f" stroke-width="6" stroke-linecap="round" opacity=".26">
+    <path d="M180 214h520"/>
+    <path d="M180 256h620"/>
+    <path d="M180 298h430"/>
+  </g>
+  <rect x="180" y="372" width="70" height="34" rx="10" fill="#7188ff" opacity=".85"/>
+  <rect x="264" y="372" width="112" height="34" rx="10" fill="#7188ff" opacity=".68"/>
+  <rect x="390" y="372" width="64" height="34" rx="10" fill="#7188ff" opacity=".52"/>
+  <rect x="468" y="372" width="92" height="34" rx="10" fill="none" stroke="#7188ff" stroke-width="3" opacity=".5"/>
+  <rect x="574" y="368" width="14" height="42" rx="3" fill="#f0f0ec"/>
+  <path d="M628 389C770 389 812 312 952 312s176 92 68 0" fill="none" stroke="#7188ff" stroke-width="3" opacity=".32" stroke-dasharray="2 16" stroke-linecap="round"/>
+  <g fill="#7188ff" opacity=".12">
+    <rect x="900" y="372" width="80" height="34" rx="10"/>
+    <rect x="996" y="372" width="120" height="34" rx="10"/>
+  </g>
+  <g stroke="#97999f" stroke-width="6" stroke-linecap="round" opacity=".16">
+    <path d="M180 470h360"/>
+    <path d="M180 512h240"/>
+  </g>
+</svg>

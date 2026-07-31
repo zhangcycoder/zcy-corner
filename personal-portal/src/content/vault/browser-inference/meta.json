@@ -1,0 +1,12 @@
+{
+  "slug": "browser-inference",
+  "title": { "zh-CN": "浏览器里跑推理:能与不能", "en-US": "Inference in the Browser: What Works, What Doesn't" },
+  "summary": { "zh-CN": "WASM / WebGPU / WebNN 三条路径,int8/int4 量化,以及下载体积、内存、延迟三堵墙——今天在浏览器里跑推理,哪些顺手、哪些会疼。", "en-US": "The three execution paths (WASM / WebGPU / WebNN), int8/int4 quantization, and the three walls of download size, memory, and latency — an honest take on what on-device inference can and can't do today." },
+  "type": "note",
+  "tags": ["机器学习", "浏览器", "WebGPU", "推理"],
+  "createdAt": "2026-07-31",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": false,
+  "cover": "/covers/browser-inference.svg"
+}
