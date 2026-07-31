@@ -60,7 +60,7 @@ export const profile: Profile = {
   role: '前端开发工程师',
   headline: '工业互联网与复杂 Web 应用前端实践',
   summary: '历史项目覆盖工业互联网、边缘计算控制台、低代码组态、AI 知识库与在线教育，关注复杂业务中的前端系统设计、功能交付与工程协作。',
-  sourceNote: '历史履历来源于旧简历，工作经历的最新记录截至 2021 年 4 月；当前任职状态未公开。',
+  sourceNote: '历史履历来源于旧简历，当前任职状态未公开。',
   focus: ['工业互联网', '边缘计算', '低代码组态', 'AI 知识库'],
   links: [
     { label: 'GitHub', href: 'https://github.com/zhangcycoder' },
