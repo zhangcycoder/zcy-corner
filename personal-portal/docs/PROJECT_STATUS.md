@@ -1,26 +1,32 @@
-# Personal Portal 长期接管 — Handoff
+# Personal Portal 连续接管 — Handoff
 
 ## Current State
 
 - cwd: `/Users/zcy/Desktop/my/zcy-corner/personal-portal`
 - branch: `dev_1`
-- git status: 记录本文件前仅有 `?? ../.DS_Store`；它是父目录既有 OS 元数据，
+- active owner: `Claude`
+- current phase: `阶段 1：工程基线转绿`
+- owner base commit: `39a0405dec9285bd308425b39280a435d0c7f4c8`
+- git status: 本次治理提交前仅有 `?? ../.DS_Store`；它是父目录既有 OS 元数据，
   不得暂存或提交。
 - recent commits:
+  - `39a0405 docs(portal): add long-horizon Claude governance`
   - `e751b0f feat(portal): add together trace showcase`
   - `ecedfcd fix(portal): restore content runtime loading`
   - `94c31ea fix(portal): correct historical resume note`
   - `14b6cba feat(portal): add real resume and supet project`
-  - `710d185 docs(portal): clarify credential privacy note`
 - summary:
   - Gallery & Paper 网站骨架、简历舱、五件藏宝阁内容和 Together Trace 案例已存在。
-  - 当前进入阶段 1「工程基线转绿」；Claude 在阶段内自主工作，Codex 只做阶段验收。
-  - Build 通过；lint 仍有 7 errors + 1 warning，是阶段 1 的明确目标。
+  - Claude 获得阶段 1–4 连续执行权限；Codex 不再逐任务传话。
+  - 当前仍从工程基线开始：Build 通过，lint 有 7 errors + 1 warning。
 
 ## Source Of Truth
 
-- `CLAUDE.md` — Claude 启动入口、权限、永久禁区和工作循环。
-- `docs/PROJECT_CHARTER.md` — 项目使命、产品方向、公开真实性、阶段路线和协作模型。
+- `CLAUDE.md` — Claude 强制启动入口、权限、暂停条件和工作循环。
+- `docs/PROJECT_CHARTER.md` — 项目使命、产品方向、真实性、连续路线和验收门。
+- `docs/DECISIONS.md` — 已锁定的长期决策及原因。
+- `docs/timeline/README.md` — 追加式事件、active owner 和接力协议。
+- `docs/timeline/2026-07-31-1525-claude-takeover-bootstrap.md` — 本轮长期接管事件。
 - `docs/superpowers/specs/2026-07-31-personal-tech-space-design.md` — Gallery & Paper
   产品与视觉设计。
 - `docs/superpowers/specs/2026-07-31-together-trace-showcase-design.md` — Together Trace
@@ -40,8 +46,8 @@
   - `src/components/layout/SiteHeader.tsx`
   - `src/components/vault/DemoStage.tsx`
   - `src/demos/particle-field/index.tsx`
-- `127.0.0.1:62740` 当前由 Vite 监听，`curl -I` 返回 HTTP 200。
-- Codex 浏览器实测已确认：
+- `127.0.0.1:62740` 最近一次实测由 Vite 监听，`curl -I` 返回 HTTP 200。
+- Codex 最近一次浏览器实测确认：
   - Particle Field：`canvas=1`、`fallback=0`、`loading=0`。
   - Typewriter：`demo=1`、`fallback=0`、`loading=0`。
   - 首页精选是个人技术空间、supET、Together Trace。
@@ -51,65 +57,67 @@
 
 ## Open Questions
 
-- None。阶段 1 的范围、第一动作和验收标准已经确定。
+- 当前工作经历的原始证据、可公开边界和候选文案尚未收集；阶段 2 由 Claude 在仓库外
+  整理，形成完整脱敏草稿后一次性交给用户确认。
+- 生产发布状态不在当前授权范围内；阶段 5 验收通过后仍需用户单独决定是否部署。
 
 ## Scope
 
 - In scope:
-  - 修复现有 7 个 lint error 和 1 个 warning。
-  - 为解决 lint 根因进行必要的小范围拆分或 React 写法调整。
-  - 保持现有产品行为、视觉和公开内容不变。
-  - 运行已有测试、Build、lint 和本地浏览器验证。
-  - 创建小而完整的本地 commit，并持续更新本状态板。
+  - 阶段 1：修复现有 lint 问题并保持 Build、已有测试与页面行为正常。
+  - 阶段 2：在仓库外收集当前工作证据并形成脱敏候选文案。
+  - 阶段 3：整合已确认工作内容，打磨简历与代表案例，固化内容模板。
+  - 阶段 4：全站响应式、交互、无障碍、性能、SEO、深链和打印优化。
+  - 在每个完整批次更新本状态板、追加时间线并创建本地 commit。
 - Out of scope:
-  - 新增产品功能、重新设计页面或增加藏宝阁内容。
-  - 新增依赖、创建新测试或迁移框架。
+  - 用户确认前公开当前工作或内网经历的候选文案。
+  - 把原始私有证据、登录邮箱、密钥、真实用户数据或未脱敏截图提交到本仓库。
+  - 未获确认时新增依赖、创建新测试、迁移框架或改变数据模型。
   - 修改 `/Users/zcy/Desktop/together-trace`。
-  - 修改公开履历、Together Trace 口径或个人信息。
   - push、部署、创建 PR、访问外部账号或改写 Git 历史。
-  - 修复全局 `/Users/zcy/.claude/hooks/autocorrect-fix.sh` 权限。
+  - 暂存或提交 `../.DS_Store`。
 
 ## Next Steps
 
-1. 重新运行 `npm run lint`，把输出与本文件的 7 errors + 1 warning 基线逐项对齐。
-2. 完整阅读每个报错文件及同仓库可工作的相似模式，按根因分为四个可独立验证的工作单元：
-   - 移除测试中的未使用参数和 Typewriter 的过期 lint-disable。
-   - 将与 React 组件同文件导出的纯函数移到职责明确的本地模块，保持原有导出消费者可迁移。
-   - 消除 `SiteHeader` 和 Particle Field 中同步 Effect setState，同时保持路由切换和
-     `prefers-reduced-motion` 行为。
-   - 让 Demo 懒加载组件在 render 外稳定创建，保持按 `demoKey` 延迟加载和错误边界。
-3. 每个工作单元先检查调用方和现有测试，再实施最小修改并运行最窄验证。
-4. 每个完成的工作单元创建一个本地 commit；提交前在同一组改动中更新本文件的证据、
-   完成内容和剩余问题。不要为了记录该 commit 自身的 SHA 而反复 amend；SHA 可在
-   下一次状态更新或阶段报告中补记。
-5. lint 清零后运行阶段完整验证并刷新浏览器页面。
-6. 达到 Acceptance Criteria 后停止，提交给 Codex 做阶段 1 验收，不自行进入阶段 2。
+1. 运行 `npm run context:check && npm run context`，确认协议、active owner、分支和工作树一致。
+2. 重新运行 `npm run lint`，把输出与 7 errors + 1 warning 基线逐项对齐。
+3. 完整阅读报错文件和相似实现，按根因拆分可独立验证的本地提交；不新增测试。
+4. lint 清零后运行阶段 1 完整验证并刷新关键页面，把实际退出码写入状态板和新时间线事件。
+5. 直接进入阶段 2，在仓库外收集当前工作证据；形成完整脱敏草稿后暂停，请用户确认一次公开口径。
+6. 用户确认后继续阶段 3 和阶段 4，不为普通实现判断等待 Codex。
+7. 阶段 4 全部完成后形成阶段 5 发布候选，停止并交由 Codex 做长期验收。
 
 ## Acceptance Criteria
 
-- `npm run lint` exit 0，0 errors，0 warnings。
-- `npm run build` exit 0。
-- `npx vitest run` exit 0，现有测试全部通过。
-- 刷新后以下页面可访问且没有新 console error：
-  - `/`
-  - `/vault`
-  - `/vault/particle-field`
-  - `/vault/typewriter-effect`
-  - `/vault/together-trace`
-  - `/resume`
-- Particle Field 有 Canvas 或符合减少动态效果设置的静态降级。
-- Typewriter 正常运行，不进入错误边界。
-- Together Trace 的公开文案、隐私提示和外部链接没有被改变。
-- 没有新增依赖或新测试文件。
-- 工作树除 `?? ../.DS_Store` 外干净。
-- 所有本地 commit 使用 `zcy <zcy_5332@163.com>`。
-- 未 push、未部署、未创建 PR。
-- 本文件已更新为阶段 1 完成状态，并记录实际命令、退出码和 commits。
+- 智能接力基础：
+  - `npm run context:check` exit 0。
+  - `npm run context` 能输出 branch、phase、active owner、first action、最近提交和时间线。
+  - 新会话只读启动文件即可知道当前任务、边界、证据、风险和第一动作。
+- 阶段 1：
+  - `npm run lint` exit 0，0 errors，0 warnings。
+  - `npm run build` exit 0。
+  - `npx vitest run` exit 0，现有测试全部通过。
+  - 刷新后的首页、藏宝阁、两个 Demo、Together Trace 和简历舱没有新 console error。
+- 阶段 2：
+  - 原始工作证据只存在仓库外。
+  - 脱敏草稿区分已证明、待用户确认和不可公开内容，并获得用户确认。
+- 阶段 3：
+  - 已确认内容进入简历舱与适当案例，事实和归属可追溯。
+  - Together Trace、Personal Portal、supET 在手机和桌面端易扫描且证据充分。
+- 阶段 4：
+  - 响应式、交互、无障碍、性能、SEO、深链和打印版式均有实际验证结果。
+  - 没有通过视觉改版掩盖内容或工程问题。
+- 全程：
+  - 工作树除 `?? ../.DS_Store` 外在每个批次提交后干净。
+  - commit 使用 `zcy <zcy_5332@163.com>`。
+  - 未 push、未部署、未创建 PR。
 
 ## Verification Commands
 
 ```bash
 cd /Users/zcy/Desktop/my/zcy-corner/personal-portal
+npm run context:check
+npm run context
 git status --short --branch
 git diff --check
 npm run lint
@@ -120,7 +128,8 @@ git log -n 8 --oneline --decorate
 git status --short --branch
 ```
 
-浏览器验收使用本地地址 `http://127.0.0.1:62740`。如果端口未监听，先启动：
+阶段内先运行与改动匹配的最窄命令；上方业务验证在阶段 1 完成时运行。浏览器验收使用
+`http://127.0.0.1:62740`。如果端口未监听，启动：
 
 ```bash
 npm run dev -- --host 127.0.0.1 --port 62740
@@ -128,64 +137,67 @@ npm run dev -- --host 127.0.0.1 --port 62740
 
 ## Known Pitfalls
 
-- 本地 Vite 服务停止时，两个动态 Demo 会显示错误边界；先检查端口和模块请求，不要
-  直接修改 ParticleSystem。
-- 浏览器 console 可能保留服务停止前的旧错误；必须刷新页面并只判断刷新后的新日志。
-- `react-refresh/only-export-components` 应通过明确的模块边界解决，不要禁用规则。
-- `react-hooks/static-components` 的根因是 render 内创建 lazy component；不要只包更多
-  `useMemo` 掩盖问题。
-- 消除 Effect 中同步 setState 时必须保持路由切换关闭菜单和减少动态效果的行为。
+- 时间线是追加式历史，不要把它改造成第二份状态板；当前事实只写 `PROJECT_STATUS`。
+- 同一 commit 无法可靠记录自己的最终 SHA；事件中允许写 `pending`，由下一事件补证，
+  不要因此反复 amend。
+- 一个批次只允许一个 active owner；发现来源不明且重叠的工作树改动时必须暂停。
+- 本地 Vite 服务停止时，动态 Demo 会显示错误边界；先检查端口和模块请求。
+- 浏览器 console 可能保留旧错误；必须刷新后判断新日志。
+- `react-refresh/only-export-components` 应通过明确模块边界解决，不要禁用规则。
+- 消除 Effect 中同步 setState 时必须保持路由菜单和减少动态效果行为。
+- 当前工作原始材料不能写入本仓库，即使稍后准备脱敏。
 - `../.DS_Store` 属于父目录既有文件，任何 commit 都不能包含它。
-- `/Users/zcy/Desktop/together-trace` 当前只读，不能为了 Personal Portal 阶段修改它。
-- `/Users/zcy/.claude/hooks/autocorrect-fix.sh` 的 permission denied 是非阻塞全局问题，
-  不属于本阶段。
+- `/Users/zcy/Desktop/together-trace` 当前只读。
 
 ## Startup Prompt
 
 ```text
-你正在接管 Personal Portal 的长期开发，不再执行单次截图传话任务。
+你正在接管 Personal Portal 的连续开发。不要依赖聊天记录、截图或模型记忆。
 
 cwd: /Users/zcy/Desktop/my/zcy-corner/personal-portal
 branch: dev_1
 
 首先执行：
 cd /Users/zcy/Desktop/my/zcy-corner/personal-portal
+npm run context:check
+npm run context
 
 按顺序完整阅读：
 - /Users/zcy/Desktop/my/zcy-corner/personal-portal/CLAUDE.md
 - /Users/zcy/Desktop/my/zcy-corner/personal-portal/docs/PROJECT_CHARTER.md
+- /Users/zcy/Desktop/my/zcy-corner/personal-portal/docs/DECISIONS.md
 - /Users/zcy/Desktop/my/zcy-corner/personal-portal/docs/PROJECT_STATUS.md
-- /Users/zcy/Desktop/my/zcy-corner/personal-portal/docs/superpowers/specs/2026-07-31-personal-tech-space-design.md
+- /Users/zcy/Desktop/my/zcy-corner/personal-portal/docs/timeline/README.md
+- /Users/zcy/Desktop/my/zcy-corner/personal-portal/docs/timeline/ 中最近三条事件
 
 锁定决策，不要重新讨论：
-- Claude 是当前阶段执行者，可在阶段内自主分析、修改、验证和创建本地 commit。
-- Codex 只在阶段完成、重大风险或方向变化时验收。
-- 当前只执行阶段 1「工程基线转绿」，不进入阶段 2。
+- Claude 是阶段 1–4 连续执行者；Codex 只在重大风险和最终发布候选时验收。
+- 达成子阶段后更新状态板与时间线并直接继续，不等待逐项批准。
 - 只能本地 commit，禁止 push、部署和创建 PR。
-- 不新增依赖，不创建新测试，不修改 together-trace。
-- 不暂存或提交 ../.DS_Store。
+- 不新增依赖或新测试，除非先获用户确认。
+- 当前工作原始证据保存在仓库外；公开脱敏草稿必须由用户确认一次。
+- 不修改 together-trace，不暂存或提交 ../.DS_Store。
 
-当前已知基线：
-- npm run build：exit 0。
-- npm run lint：exit 1，7 errors + 1 warning。
-- 本地站点：http://127.0.0.1:62740
-- 当前功能基线：e751b0f66ad1e38202843989ae91422940d0cc9e
+当前阶段：
+- 阶段 1「工程基线转绿」。
+- 已知 build exit 0；lint exit 1，7 errors + 1 warning。
 
 第一动作：
-- 运行 npm run lint，逐项核对 docs/PROJECT_STATUS.md 中记录的基线；然后完整阅读报错文件和相似实现，按根因拆分修复。不要在理解根因前修改代码。
+- 确认 context:check 通过后运行 npm run lint，核对状态板记录的基线；完整阅读报错文件和相似实现，再按根因做最小修复。
 
-阶段内工作方式：
-- 自主推进，不为普通实现细节请求 Codex。
-- 每个 commit 是一个可独立理解和验证的工作单元。
-- 每个 commit 同步更新 docs/PROJECT_STATUS.md 的完成内容、验证结果和下一步；不要
-  为记录该 commit 自身的 SHA 反复 amend。
-- 运行与改动匹配的最窄验证；阶段结束运行 lint、build、npx vitest run 和浏览器检查。
-- 未达到阶段门槛就继续工作；达到后停止并交给 Codex 验收。
+工作方式：
+- 每个 commit 是一个可独立理解、验证和回退的工作单元。
+- 每个批次同步更新 PROJECT_STATUS 并按时间线协议新增事件。
+- 运行实际验证并记录退出码；未运行不得写成通过。
+- 阶段 1 完成后直接进入阶段 2；脱敏草稿完整时暂停让用户确认。
+- 用户确认后继续阶段 3 和 4；阶段 4 完成后停止，交给 Codex 做发布候选验收。
 
 只有以下情况暂停：
-- 需要改变 PROJECT_CHARTER 的锁定方向。
-- 需要新增依赖、创建新测试、改变数据结构或架构。
-- 涉及隐私、公开叙事、外部账号或不可逆操作。
+- 改变 PROJECT_CHARTER 或 DECISIONS 的锁定方向。
+- 新增依赖、创建新测试、改变数据模型或架构。
+- 当前工作公开文案等待用户确认。
+- 隐私、真实性、外部账号或不可逆操作风险。
 - 同一问题连续三次修复失败。
-- 阶段 1 已达到全部 Acceptance Criteria。
+- 发现来源不明且与当前范围重叠的工作树改动。
+- 阶段 4 已达到全部验收标准。
 ```
