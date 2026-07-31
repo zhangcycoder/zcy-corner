@@ -48,9 +48,24 @@ export function getPublishedTreasures(): TreasureRecord[] {
     .sort((left, right) => right.updatedAt.localeCompare(left.updatedAt))
 }
 
-/** @name 获取首页精选藏品 */
+/** @name 首页精选策展顺序(② 方法论 → ① 产品 → ③ meta) */
+const FEATURED_ORDER = ['agent-orchestration', 'together-trace', 'personal-portal']
+
+/** @name 藏宝阁「早期实验」分区的藏品 */
+export const EARLY_EXPERIMENT_SLUGS = ['particle-field', 'typewriter-effect']
+
+/**
+ * @name 获取首页精选藏品
+ * @description 按 FEATURED_ORDER 显式策展顺序;列表中不存在/未 published/未 featured
+ *   的 slug 直接跳过(支撑过渡态),列表外的 featured 项按更新时间兜底追加。
+ */
 export function getFeaturedTreasures(limit = 3): TreasureRecord[] {
-  return getPublishedTreasures().filter((item) => item.featured).slice(0, limit)
+  const featured = getPublishedTreasures().filter((item) => item.featured)
+  const ordered = FEATURED_ORDER
+    .map((slug) => featured.find((item) => item.slug === slug))
+    .filter((item): item is TreasureRecord => Boolean(item))
+  const rest = featured.filter((item) => !FEATURED_ORDER.includes(item.slug))
+  return [...ordered, ...rest].slice(0, limit)
 }
 
 /**

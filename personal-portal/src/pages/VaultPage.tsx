@@ -5,6 +5,7 @@ import VaultFilter, {
   type VaultFilterValue,
 } from '../components/vault/VaultFilter'
 import {
+  EARLY_EXPERIMENT_SLUGS,
   getPublishedTreasures,
   getTreasureTypes,
 } from '../content/contentLoader'
@@ -23,6 +24,12 @@ export default function VaultPage() {
   const visibleTreasures = selectedType === 'all'
     ? treasures
     : treasures.filter((treasure) => treasure.type === selectedType)
+  const mainTreasures = visibleTreasures.filter(
+    (treasure) => !EARLY_EXPERIMENT_SLUGS.includes(treasure.slug),
+  )
+  const earlyTreasures = visibleTreasures.filter(
+    (treasure) => EARLY_EXPERIMENT_SLUGS.includes(treasure.slug),
+  )
 
   const updateType = (type: VaultFilterValue) => {
     setSearchParams((currentParams) => {
@@ -80,7 +87,7 @@ export default function VaultPage() {
           </span>
         </div>
         <div className="treasure-grid">
-          {visibleTreasures.map((treasure, index) => (
+          {mainTreasures.map((treasure, index) => (
             <TreasureCard
               key={treasure.slug}
               treasure={treasure}
@@ -90,6 +97,26 @@ export default function VaultPage() {
           ))}
         </div>
       </section>
+
+      {earlyTreasures.length > 0 && (
+        <section
+          className="vault-page__early"
+          aria-labelledby="vault-early-title"
+        >
+          <div className="vault-page__early-head">
+            <span className="home-eyebrow">EARLY EXPERIMENTS</span>
+            <h2 id="vault-early-title">{isEnglish ? 'Early experiments' : '早期实验'}</h2>
+            <p>{isEnglish
+              ? 'Warm-up demos kept for the record — not the current headline.'
+              : '留档的热身实验——不再是当前主线,但记录仍在。'}</p>
+          </div>
+          <div className="treasure-grid">
+            {earlyTreasures.map((treasure) => (
+              <TreasureCard key={treasure.slug} treasure={treasure} locale={locale} />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   )
 }

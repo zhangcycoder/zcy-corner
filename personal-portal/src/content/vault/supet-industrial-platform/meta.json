@@ -7,7 +7,7 @@
   "createdAt": "2021-04-01",
   "updatedAt": "2026-07-31",
   "status": "published",
-  "featured": true,
+  "featured": false,
   "cover": "/covers/supet-industrial-platform.svg",
   "externalUrl": "https://www.supet.com/home"
 }
