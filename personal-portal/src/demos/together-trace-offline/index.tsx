@@ -34,12 +34,10 @@ export default function TogetherTraceOfflineDemo() {
   }
 
   const toggleOnline = () => {
-    setOnline((value) => {
-      const next = !value
-      // 回到在线 → flush 同步队列
-      if (next) setMoments((list) => list.map((moment) => ({ ...moment, synced: true })))
-      return next
-    })
+    const next = !online
+    setOnline(next)
+    // 回到在线 → flush 同步队列
+    if (next) setMoments((list) => list.map((moment) => ({ ...moment, synced: true })))
   }
 
   return (
@@ -77,7 +75,8 @@ export default function TogetherTraceOfflineDemo() {
         ))}
       </ul>
 
-      <p className="tt-offline__note">
+      <p className="tt-offline__note" role="status" aria-live="polite">
+        {pending > 0 ? `${pending} 条待同步。` : '已全部同步。'}
         本地先写、界面即时可见;回到在线自动 flush 同步队列。全假数据,仅演示离线优先概念。
       </p>
     </div>
