@@ -1,20 +1,3 @@
-import React from 'react'
-import HeroSection from '../components/HeroSection'
-import AboutSection from '../components/AboutSection'
-import SkillsSection from '../components/SkillsSection'
-import ProjectsSection from '../components/ProjectsSection'
-import ContactSection from '../components/ContactSection'
-
-const HomePage: React.FC = () => {
-  return (
-    <main>
-      <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <ContactSection />
-    </main>
-  )
+export default function HomePage() {
+  return <section className="gallery-page"><h1>个人技术空间</h1></section>
 }
-
-export default HomePage

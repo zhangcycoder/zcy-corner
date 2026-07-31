@@ -1,34 +1,69 @@
 @import "tailwindcss";
-
-@theme {
-  --color-bg-primary: #0a0a0f;
-  --color-bg-secondary: #0d1117;
-  --color-accent-cyan: #00ffff;
-  --color-accent-blue: #0080ff;
-  --color-text-primary: #e0e0e0;
-  --color-text-muted: rgba(200, 220, 255, 0.75);
-  --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
-}
-
-/* CSS 变量（供内联样式使用） */
-:root {
-  --bg-primary: #0a0a0f;
-  --accent-cyan: #00ffff;
-  --accent-blue: #0080ff;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-}
+@import "./tokens.css";
+@import "./site.css";
+@import "./content.css";
 
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  background-color: var(--bg-primary);
-  font-family: var(--font-mono);
-  color: #e0e0e0;
+html {
+  min-width: 320px;
+  min-height: 100%;
   scroll-behavior: smooth;
+  background: var(--color-gallery);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+::selection {
+  color: var(--color-gallery);
+  background: var(--color-accent);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

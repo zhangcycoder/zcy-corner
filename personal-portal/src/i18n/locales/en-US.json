@@ -1,39 +1,29 @@
 {
   "nav": {
-    "about": "About",
-    "skills": "Skills",
-    "projects": "Projects",
-    "contact": "Contact"
+    "home": "Home",
+    "vault": "Vault",
+    "resume": "Résumé",
+    "about": "About"
   },
-  "hero": {
-    "name": "YOUR NAME",
-    "cta": "Explore →",
-    "roles": ["Full Stack Developer", "React Enthusiast", "Open Source Contributor"]
+  "common": {
+    "viewAll": "View all",
+    "backHome": "Back home",
+    "backVault": "Back to vault"
   },
-  "about": {
-    "title": "About Me",
-    "location": "Location",
-    "status": "Status",
-    "statusValue": "Open to Work",
-    "bio": ["Hi, I'm a full-stack developer passionate about technology.", "Focused on building high-performance, user-friendly web apps.", "Enthusiastic about open source and cutting-edge tech."]
+  "treasureTypes": {
+    "demo": "Interactive demo",
+    "ui": "Interface",
+    "module": "Module",
+    "note": "Technical note",
+    "project": "Project"
   },
-  "skills": {
-    "title": "Tech Stack"
-  },
-  "projects": {
-    "title": "Projects",
-    "viewDetail": "View Details",
-    "backToList": "← Back to Projects",
-    "demo": "Live Demo",
-    "techStack": "Tech Stack"
-  },
-  "contact": {
-    "title": "Contact",
-    "subtitle": "Feel free to reach out for collaboration or tech discussions"
+  "resume": {
+    "title": "Résumé",
+    "print": "Print / Export PDF"
   },
   "notFound": {
-    "title": "404 - Page Not Found",
-    "desc": "The page you are looking for does not exist.",
-    "back": "Return to Home"
+    "title": "404 · Page not found",
+    "desc": "There is nothing at this address yet.",
+    "back": "Back home"
   }
 }

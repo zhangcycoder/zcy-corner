@@ -1,0 +1,22 @@
+:root {
+  --color-gallery: #0b0c0f;
+  --color-gallery-elevated: #15171c;
+  --color-paper: #eeeae2;
+  --color-paper-muted: #d7d2c9;
+  --color-ink: #171716;
+  --color-text: #f0f0ec;
+  --color-muted-dark: #97999f;
+  --color-muted-light: #68645d;
+  --color-accent: #7188ff;
+  --color-line-dark: #282a2f;
+  --color-line-light: #bdb8af;
+  --font-sans: "PingFang SC", "Avenir Next", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+  --font-serif: "Songti SC", STSong, SimSun, Georgia, "Times New Roman", serif;
+  --font-mono: "SFMono-Regular", ui-monospace, Consolas, "Liberation Mono", monospace;
+  --content-width: 1200px;
+  --reading-width: 760px;
+  --transition-fast: 180ms;
+  --transition-base: 240ms;
+  --space-page: clamp(1.25rem, 4vw, 3.5rem);
+  --header-height: 5rem;
+}
