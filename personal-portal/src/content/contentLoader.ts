@@ -5,6 +5,8 @@ import {
   type TreasureType,
 } from './schema'
 
+export { resolveLocalizedText } from './schema'
+
 interface MDXModule {
   default: ComponentType
 }

@@ -44,7 +44,7 @@ function validateVaultContent(): Plugin {
 export default defineConfig({
   plugins: [
     validateVaultContent(),
-    mdx(),
+    { enforce: 'pre', ...mdx() },
     react({ include: /\.(js|jsx|ts|tsx|md|mdx)$/ }),
     tailwindcss(),
   ],
