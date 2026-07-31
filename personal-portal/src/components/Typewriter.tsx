@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 
 export interface TypewriterProps {
   texts: string[];
@@ -75,11 +75,28 @@ export default function Typewriter({
   // 确保 charInterval 不超过 100ms
   const interval = Math.min(charInterval, 100);
 
+  // 尊重「减少动态效果」：开启时不跑打字循环，直接静态呈现首段文字
+  const [reduceMotion, setReduceMotion] = useState(
+    () =>
+      typeof window !== 'undefined' &&
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  );
+
+  useEffect(() => {
+    if (typeof window.matchMedia !== 'function') return;
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handleChange = (event: MediaQueryListEvent) => setReduceMotion(event.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
   const [state, dispatch] = useReducer(typewriterReducer, INITIAL_STATE);
   const stateRef = useRef(state);
   stateRef.current = state;
 
   useEffect(() => {
+    if (reduceMotion) return;
     if (!texts || texts.length === 0) return;
 
     let timerId: ReturnType<typeof setTimeout>;
@@ -122,7 +139,15 @@ export default function Typewriter({
     timerId = setTimeout(tick, interval);
     return () => clearTimeout(timerId);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [texts, interval, pauseDuration]);
+  }, [texts, interval, pauseDuration, reduceMotion]);
+
+  if (reduceMotion) {
+    return (
+      <span className={className} style={style}>
+        {texts?.[0] ?? ''}
+      </span>
+    );
+  }
 
   return (
     <span className={className} style={style} aria-live="polite">
