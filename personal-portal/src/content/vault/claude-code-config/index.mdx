@@ -1,0 +1,398 @@
+# Claude Code 工作配置
+
+给 AI 编程助手写配置,本质是把「我希望它怎么工作」变成它每次都会遵守的规则。目标不是让它更聪明,而是让它**稳定、可控、且能随时间自我进化**。
+
+下面是这套配置的**真实文件内容**——全局 `CLAUDE.md` 与全部 `rules/`,原样展示,仅做脱敏:公司自研平台、内部系统、具体业务与内网域名已泛化或替换为中性示例;通用方法论、公开工具名与技术约定保持原样。
+
+---
+
+## 全局指令 · `~/.claude/CLAUDE.md`
+
+始终注入、优先级最高的一层。前半是手写的硬规则,后半 `claude-config-kit managed` 是可随团队基线升级的托管块。
+
+````md
+## Core Rules
+
+- **禁止未经授权的操作**:未经用户明确指示,禁止 commit、push 或修改代码。当用户要求分析或解释时,只提供解释——不得修改代码,除非明确要求。
+
+## Debugging
+
+- **聚焦用户描述的确切场景**:调试或复现 bug 时,只分析用户描述的具体场景,禁止分析相邻或类似场景(如 add mode vs edit mode、空值 vs 错误值)。不确定具体场景时,先澄清再动手。
+
+## Code Standards
+
+- **TypeScript 优先**:所有代码使用 TypeScript 编写。禁止 `as any` 类型断言——使用正确的类型收窄和扩展类型定义替代。
+- **JSDoc 与代码注释**:跨模块调用的公共组件、可复用方法、自定义 Hook 必须写 JSDoc。非公共的内部实现:复杂逻辑需加 `@name`;常量及被多次引用的内部函数必须加 `@name`;其余内部实现不需要。内联注释只说「为什么」不说「是什么」。详细示例见 `~/.claude/rules/jsdoc-comments.md`。
+
+## Git Workflow
+
+- **MR 目标分支必须确认**:创建 MR 前,必须与用户确认目标分支。默认目标不一定是 master——优先检查是否存在 release 分支(如 `release-vYYYY_MM_DD`)。
+
+## Communication
+
+- **基于实际代码回答**:回答问题或评估代码时,必须基于实际代码库和具体流程给出深入答案。禁止给出脱离代码的通用结论或过早的理论性判断。
+
+# ===== BEGIN claude-config-kit managed =====
+## 1. Think Before Coding
+
+**Don't assume. Don't hide confusion. Surface tradeoffs.**
+
+- State your assumptions explicitly. If uncertain, **stop**, name what's unclear, then ask.
+- 首次编辑(每会话一次):`pwd` + `git branch --show-current` + 修改范围
+- 模糊动词("优化" / "对齐" / "调整下" / "弄好" / "处理")→ AskUserQuestion 先收敛 scope
+- Figma 任务:先调 Figma MCP 取实际 spec(不从用户文字推断尺寸 / 颜色 / 间距);主 session 拉完写入 `.claude/cache/figma-<feature>.md`,subagent 读文件而非自己调 MCP
+- Bug 修复:复现路径 + 根因定位到 `文件:行号` + 排除的其他可能性;缺任一项禁止动手
+
+## 2. Simplicity First
+
+**Minimum code that solves the problem. Nothing speculative.**
+
+If you write 200 lines and it could be 50, rewrite it.
+
+- 复用现有 dev/test 基础设施:造临时测试文件 / dev host / example 前先 `ls` 确认是否已有
+
+## 3. Surgical Changes
+
+**Touch only what you must. Clean up only your own mess.**
+
+- scope 边界严守:scope 外有上下游关联需要一起改 → 动手前列清单,等用户确认后再扩展
+- 删除前依赖追踪:删除文件 / 导出 / token / CSS 变量 / 任意 symbol 前用 LSP `findReferences` 或 `rg` 验证引用计数 = 0 才删
+- 修内部 bug 不向 public / shared types 加新字段,prefer computed values
+
+## 4. Goal-Driven Execution
+
+**Define success criteria. Loop until verified.**
+
+- 多模块改动 / 引入新 package、架构或数据契约 / 集成路径不清 → 优先调用 `architecture-lock` skill
+- 同一 bug 修复被否定 ≥ 2 次 → 停止编码,重新诊断并向用户展示新方案后再动手
+- 禁止 debug log 螺旋:优先读码推理;读码无法定位最多 2 轮 debug log;仍未定位 → 停下展示已排除路径与当前假设
+- 显式请求 TDD / 回归测试优先 → `tdd-guide`
+- 实现后 / 提交前需验证 → `test-runner`(scoped test/lint/typecheck;全量需 `ALLOW_HEAVY=1`)
+
+## Git Safety
+
+- Commit message 格式:`<type>(<scope>): <需求ID> <描述>`——有内部任务系统需求单的功能性 commit 必须携带需求 ID(详见 `git-commit-scope` skill;chore / 纯重构等无需求单改动豁免)
+- rebase / squash / push / amend / cherry-pick / reset --hard 前必须 `git branch --show-current` 验证分支
+- Squash 前必须展示 `git diff --name-only` 给用户确认
+- 禁止带入他人 commit:squash / rebase 后用 `git log --oneline origin/<base>..HEAD` 确认只包含自己的提交
+- PR diff 用 `git diff origin/<base>...HEAD`(三点,非两点)
+- Force push 用 `--force-with-lease`
+- 严禁 bypass 项目 commitlint / pre-commit hook(`--no-verify` 等)除非用户明确要求
+- Commit fast-path:当前会话已知改动文件 / 分支 / scope 时直接 `git add + git commit`;仅普通 commit 适用,squash / rebase / push 必须走完整流程
+
+## Editing Hygiene
+
+- Edit 前必先 Read;user-level 与 project-level 同名文件存在 → 编辑前确认操作的是正确位置
+- 禁止全局格式化:只格式化修改的文件
+
+## Tool Use
+
+- 符号导航(TS/JS)优先 LSP:`goToDefinition` / `findReferences` / `hover` / `documentSymbol` / `incomingCalls` `outgoingCalls` / `goToImplementation`;Grep 兜底
+- Glob/Grep 默认 `head_limit=20`(配置文件 10);排除 `.claude/projects/`, `.claude/cache/`, `.claude/logs/`;大范围搜索必须指定 `glob` 或 `type`
+- Heavy command(build/test/typecheck)默认拦截;`ALLOW_HEAVY=1` 解锁
+- 不要在 agent Bash 跑交互式 TUI(lazygit / fzf 等会挂起)
+
+## Explore Subagent
+
+任一阈值命中即用 Explore,而非自行多次 Grep/Read:
+
+- 依赖链追踪 > 2 层
+- LSP `findReferences` 结果 > 50 处需分析
+- 调用链 `incomingCalls` / `outgoingCalls` > 3 层
+- 跨模块一致性检查 / 性能瓶颈定位
+
+Explore prompt 必须指定:搜索范围 + 输出格式 + 具体问题。禁止模糊 prompt。
+
+## Parallel Safety
+
+并行调用不混入可能失败的工具:稳定才并行 / 不确定要容错 / 有依赖要拆分。
+
+- Read 不确定文件 → `bat ... 2>/dev/null || echo "[不存在]"`
+- Edit 不确定匹配 → 先 `rg -q` 确认
+- Grep/Glob 可能无结果 → `... || echo "[无结果]"`
+
+## Session Behavior
+
+建议 learn skill(本会话最多提示 1 次):
+
+- 同一组操作 3+ 次(Repeated Workflow)
+- Skill/Hook 改动 或 skill 抱怨 / 回流
+
+会话长度:> 12 轮末尾建议开新 session(最多 3 次提示)
+
+## Security Incident Response
+
+发现潜在 secret 泄露 / 注入 / 越权:
+
+1. **立刻停止**,不提交不推送
+2. 评估影响范围(文件 / 接口 / 环境)
+3. 先修 CRITICAL 再回其他工作
+4. 全库扫描同类漏洞
+5. 所有可能暴露的 token / secret 立即轮换
+# ===== END claude-config-kit managed =====
+````
+
+---
+
+## 规则 · `~/.claude/rules/`
+
+每条 rule 是一个独立的 `.md` 文件,由全局指令引用。下面 8 个全文照录(脱敏后)。
+
+### `coding-style.md` — 代码风格
+
+````md
+# 代码风格规范
+
+## 核心规则
+
+- **不可变性**:创建新对象,禁止直接 mutation(`{ ...obj, key: val }` 而非 `obj.key = val`)
+- **文件大小**:单文件 200-400 行,硬上限 800 行;超出按职责拆分
+- **错误处理**:禁止空 catch;UI 层友好提示,服务层记录完整上下文
+- **输入校验**:系统边界(用户输入、外部 API、文件读取)必须校验,快速失败
+- **语义 HTML**:用语义标签(header/nav/main/section),交互元素用 button/a,图片必须有 alt
+
+## 完成前自检
+
+- [ ] 函数体 < 50 行,文件 < 800 行,嵌套 ≤ 4 层
+- [ ] 无空 catch,无魔法数字,无直接 mutation
+- [x] `oxfmt` — hook 自动:pre-commit gateway 对 staged 文件自动格式化
+- [x] `oxlint` — hook 自动:PostToolUse 每次 Edit/Write 后自动检查
+- [ ] scoped typecheck — 手动(heavy command),全量需 `ALLOW_HEAVY=1`
+- [x] `autocorrect --fix` — hook 自动:pre-commit gateway 对 staged MD/TS/TSX 自动修复
+````
+
+### `security.md` — 安全规范
+
+````md
+# 安全规范
+
+## 提交前必检清单
+
+- [ ] 无硬编码密钥(API Key、密码、Token)
+- [ ] 所有用户输入已校验
+- [ ] HTML 输出已转义,防 XSS
+- [ ] 接口有认证/鉴权保护
+- [ ] 错误信息不泄露内部实现细节
+
+## Secret 管理原则
+
+- **绝不**将密钥硬编码进源码
+- **必须**通过环境变量或 Secret 管理工具注入
+- 启动时校验必需的 Secret 是否存在
+- 一旦发现密钥可能泄露,立即轮换
+
+## 发现安全问题时的处理流程
+
+1. **立刻停止**当前工作
+2. 评估影响范围(哪些文件、哪些接口受影响)
+3. 先修复 CRITICAL 级别问题,再继续其他工作
+4. 检查整个代码库是否有类似漏洞
+5. 轮换所有可能已暴露的密钥
+````
+
+### `git-workflow.md` — Git 工作流
+
+````md
+# Git Workflow
+
+## Commit Message Format
+
+    <type>(<scope>): <description>
+
+Types: feat, fix, refactor, docs, test, chore, perf, ci
+
+## Key Rules
+
+- Compare against `origin/master`(not local master)
+- `git diff [base]...HEAD` to see all changes for PR
+- Never skip hooks(--no-verify)without explicit user approval
+- Validate commitlint scope before committing
+- Rebase force push: use `--force-with-lease`(not bare `--force`); the permission hook auto-approves it to feature branches
+````
+
+### `model-inheritance.md` — 模型继承
+
+````md
+# Model Inheritance Rule
+
+## Core Principle
+
+**All tool calls must inherit the parent model. Hardcoding model selection is forbidden.**
+
+## Rules
+
+1. **Do not specify `model` in Task tool calls** — let subagents inherit
+2. **In any AI invocation context** — do not make cost-optimization decisions; use whatever model the user has configured as default
+
+## Notes
+
+User requirement: **Do not optimize cost on my behalf. The default model is always the best choice.**
+````
+
+### `infrastructure.md` — 基建约定
+
+````md
+# Infrastructure
+
+- **认证策略**:安装流程不注入任何 Claude 认证 env,认证由用户在仓库外自行管理
+- **默认模型**:`claude-sonnet-4-6`(settings.json `defaultModel` + `ANTHROPIC_DEFAULT_SONNET_MODEL`)
+- **max output tokens**:64000
+
+> 绝不将 token 值硬编码进任何文件;模板、脚本、README 均不得假设仓库会代为写入认证 env。
+````
+
+### `agents.md` — 子代理编排
+
+````md
+# Agent Orchestration
+
+## Available Agents
+
+| Agent | When to Use |
+|-------|------------|
+| tdd-guide | New features, bug fixes |
+| test-runner | Verify code changes (scoped by default) |
+
+## Trigger Rules
+
+- Bug fix / new feature → **tdd-guide**
+- Independent tasks → launch agents **in parallel**
+
+## Test Scope Policy
+
+- 默认:scoped test/lint/typecheck(改动文件、目标 workspace)
+- 升级全量:共享基础层变更、跨域大改、发布前门禁
+- 全量必须显式 `ALLOW_HEAVY=1` + 压缩输出
+````
+
+### `deferred-work.md` — 延迟工作
+
+当前范围内无法安全解决的问题,必须在代码旁留结构化 TODO,而不是静默跳过。
+
+````md
+# 延迟工作(Deferred Work)
+
+## 格式
+
+    TODO ZCY-xxx: 【现状】… 【原因】… 【后续】…
+
+- **现状**:当前问题、缺失行为或不确定性是什么
+- **原因**:为什么现在不能解决(范围外、依赖未就绪、需要更多信息等)
+- **后续**:具体的下一步动作,以及相关依赖方或负责人(如有)
+- **xxx**:递增编号或已有任务 ID,便于全局搜索和追踪
+
+## 示例
+
+```typescript
+// TODO ZCY-001: 【现状】redirect_uri 硬编码了测试环境域名
+// 【原因】生产域名尚未确认,需要等后端配置完成
+// 【后续】后端完成配置后,改为从环境变量 VITE_REDIRECT_URI 读取
+
+const redirectUri = 'https://app.example-staging.com/oauth/callback'
+```
+
+```typescript
+// TODO ZCY-002: 【现状】取消操作未做二次确认弹窗
+// 【原因】当前迭代范围不含此交互,需求单 TASK-1024 中已列为后续
+// 【后续】TASK-1024 排期后实现,参考现有取消流程的 Dialog 模式
+
+await cancelOrder(orderId)
+```
+
+## 使用约束
+
+- **必须加 TODO**:安全无法在当前任务内解决,且有具体的后续动作
+- **禁止加 TODO**:当前任务内可安全解决的问题(直接解决);没有具体后续步骤的模糊提醒(如 `TODO: 优化一下这里`)
+- **完成后必须删除**:延迟工作完成后立即移除对应 TODO,不留历史残留
+````
+
+### `jsdoc-comments.md` — JSDoc 示例参考
+
+> 示例中的业务实体已替换为中性占位(选项 / 列表项 / 金额),仅用于演示注释规范本身。
+
+````md
+# JSDoc 代码示例参考
+
+规则原文见 `~/.claude/CLAUDE.md` 的「JSDoc 与代码注释」条目。本文件只提供典型场景的代码示例。
+
+## 公共组件
+
+```tsx
+/**
+ * @name 选项选择弹窗
+ * @description 仅在多步表单的选择步骤中使用;disabled 状态由父组件控制,
+ *   弹窗本身不处理权限校验。
+ * @param options - 可选项列表,disabled=true 的项显示置灰不可点
+ * @param selected - 当前已选中的项,用于高亮展示
+ * @param onChange - 用户选择回调,参数为完整选项对象(含 id / label)
+ * @param handleAdd - 点击"添加新选项"时的回调,不传则不展示入口
+ */
+export const OptionPickerPopup: React.FC<OptionPickerProps> = ...
+```
+
+## 自定义 Hook
+
+```tsx
+/**
+ * @name 可用项列表 Hook
+ * @description 封装列表拉取、状态过滤和选中状态管理;
+ *   不含 UI 渲染,仅返回数据和操作方法。
+ * @param options.initialItemId - 初始选中项 ID,不传时自动选第一项可用项
+ * @returns items - 已过滤的可用项列表(status=Done)
+ * @returns selectedItem - 当前选中项,null 表示无可用项
+ * @returns setSelectedItem - 手动切换选中项
+ */
+export const useAvailableItems = (options?: { initialItemId?: string }) => ...
+```
+
+## 工具函数
+
+```tsx
+/**
+ * @name 格式化美元金额
+ * @param amount - 原始金额(数字或字符串,单位 USD)
+ * @param sign - 前置符号,'+' 表示入账,'-' 表示出账,不传则不加符号
+ * @returns 格式化字符串,如 `+$1,234.56`;amount 无效时返回 `'--'`
+ */
+export const formatUsd = (amount: number | string, sign?: '+' | '-'): string => ...
+```
+
+## 非公共的内部实现(常量 / 多次引用的内部函数必须 @name)
+
+```tsx
+/** @name 支持的渠道白名单 */
+const SUPPORTED_CHANNELS = [CHANNEL_A, CHANNEL_B, CHANNEL_C, CHANNEL_D]
+
+/** @name 获取配置排序权重 */
+// 文件内被列表排序与推荐位判断多处调用
+const getConfigWeight = (item = {}) => Number(item.weight ?? item.sort ?? 0)
+
+// ❌ 单处调用、逻辑自明的内部函数不需要 JSDoc
+const stopPolling = () => { ... }
+```
+
+## 内联注释(只说「为什么」)
+
+```tsx
+// ✅ 说明非直观的业务约束
+// iOS WKWebView:先收键盘再调 Bridge,否则 fixed 元素命中区错位
+await dismissSystemKeyboard()
+
+// ✅ 刻意省略 effect deps 的原因
+// 国家码只需挂载时拉取一次,i18n.language 加入 deps 会导致每次切语言重复请求
+}, [])
+
+// ✅ 说明结构性取舍
+// dep 用 selectedItem 对象引用而非 item?.id,
+// 确保列表首次加载后(id 相同但对象引用变化)也能触发
+}, [selectedItem])
+
+// ❌ 在说「是什么」(删掉)
+// 设置加载状态为 true
+setLoading(true)
+```
+````
+
+---
+
+> 这些文件不是一次写死的:规则解决「这次怎么做对」,配套的**记忆系统**与 **Skill 生命周期**(诊断 → 记录 → 晋级)解决「下次怎么做得更对」——每一条都能追溯到「我为什么要它」,长不出来的就该被清理掉。

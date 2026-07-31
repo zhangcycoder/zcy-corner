@@ -1,0 +1,12 @@
+{
+  "slug": "co-authored",
+  "title": { "zh-CN": "共建后记", "en-US": "Colophon · ZCY × Claude" },
+  "summary": { "zh-CN": "这个角落主要由 ZCY 搭建,一部分是与 Claude 在对话里一起做的——这页老实交代哪些、以及我们怎么配合。", "en-US": "This corner is mostly built by ZCY; part of it was made together with Claude in conversation — this page records exactly which parts, and how we work." },
+  "type": "note",
+  "tags": ["Colophon", "人机协作", "共建"],
+  "createdAt": "2026-07-31",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": false,
+  "cover": "/covers/co-authored.svg"
+}

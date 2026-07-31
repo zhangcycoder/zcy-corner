@@ -228,6 +228,23 @@
   text-align: right;
 }
 
+.site-footer__inner {
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.site-footer__coauthor a {
+  color: var(--scene-muted);
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: 0.3rem;
+  transition: color var(--transition-fast) ease;
+}
+
+.site-footer__coauthor a:hover,
+.site-footer__coauthor a:focus-visible {
+  color: var(--color-accent);
+}
+
 .home-page.gallery-page,
 .vault-page.gallery-page {
   padding-top: clamp(4rem, 9vw, 7rem);
@@ -969,12 +986,121 @@
   transition: border-color var(--transition-fast) ease;
 }
 
+/* 4 个新 demo 共用的角标 */
+.demo-hud {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--color-muted-dark);
+  font: 500 0.625rem/1 var(--font-mono);
+  letter-spacing: 0.12em;
+  pointer-events: none;
+}
+
+.flow-field-demo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--color-gallery);
+}
+
+.flow-field-demo__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: pan-y;
+}
+
+.ascii-art-demo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--color-gallery);
+}
+
+.ascii-art-demo__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: pan-y;
+}
+
+.generative-poster-demo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--color-gallery);
+}
+
+.generative-poster-demo__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.generative-poster-demo__controls {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.generative-poster-demo__controls button {
+  padding: 0.55rem 1.1rem;
+  color: var(--color-text);
+  background: var(--scene-surface);
+  border: 1px solid var(--scene-line);
+  font: 500 0.6875rem/1 var(--font-mono);
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: border-color var(--transition-fast) ease;
+}
+
 .agent-demo__btn:hover:not(:disabled) { border-color: var(--color-accent); }
 .agent-demo__btn:focus-visible { border-color: var(--color-accent); }
 .agent-demo__btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
 .agent-demo__dots { display: flex; gap: 0.25rem; color: var(--color-line-dark); font-size: 0.625rem; }
 .agent-demo__dots .is-on { color: var(--color-accent); }
+
+.generative-poster-demo__controls button:hover,
+.generative-poster-demo__controls button:focus-visible {
+  border-color: var(--color-accent);
+}
+
+.physics-sandbox-demo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--color-gallery);
+}
+
+.physics-sandbox-demo__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+.co-authorship-demo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--color-gallery);
+}
+
+.co-authorship-demo__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
 
 @media (min-width: 40rem) {
   .treasure-grid {

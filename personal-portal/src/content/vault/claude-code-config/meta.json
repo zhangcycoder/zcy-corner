@@ -1,0 +1,12 @@
+{
+  "slug": "claude-code-config",
+  "title": { "zh-CN": "Claude Code 工作配置", "en-US": "Claude Code Working Config" },
+  "summary": { "zh-CN": "把我规训 AI 编程助手的真实配置——全局指令与全部规则——脱敏后原样展示。", "en-US": "The real config that disciplines my AI coding assistant — global instructions and every rule — shown verbatim, only redacted." },
+  "type": "note",
+  "tags": ["Claude Code", "AI 协作", "工作流", "方法论"],
+  "createdAt": "2026-07-31",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": false,
+  "cover": "/covers/claude-code-config.svg"
+}

@@ -1,6 +1,15 @@
 import type { ComponentType } from 'react'
 
-export type DemoKey = 'particle-field' | 'typewriter-effect' | 'agent-orchestration' | 'together-trace-offline'
+export type DemoKey =
+  | 'particle-field'
+  | 'typewriter-effect'
+  | 'agent-orchestration'
+  | 'together-trace-offline'
+  | 'flow-field'
+  | 'ascii-art'
+  | 'generative-poster'
+  | 'physics-sandbox'
+  | 'co-authorship'
 
 type DemoLoader = () => Promise<{ default: ComponentType }>
 
@@ -9,6 +18,11 @@ const demoLoaders: Record<DemoKey, DemoLoader> = {
   'typewriter-effect': () => import('./typewriter-effect'),
   'agent-orchestration': () => import('./agent-orchestration'),
   'together-trace-offline': () => import('./together-trace-offline'),
+  'flow-field': () => import('./flow-field'),
+  'ascii-art': () => import('./ascii-art'),
+  'generative-poster': () => import('./generative-poster'),
+  'physics-sandbox': () => import('./physics-sandbox'),
+  'co-authorship': () => import('./co-authorship'),
 }
 
 /**

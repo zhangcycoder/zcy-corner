@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
+  <rect width="1200" height="720" fill="#0b0c0f"/>
+  <g font-family="monospace" font-size="46" fill="#7188ff" letter-spacing="14">
+    <text x="140" y="240" opacity=".35">. . : : - = + *</text>
+    <text x="140" y="330" opacity=".55">: - = + * # % @</text>
+    <text x="140" y="420" opacity=".85">= + * # % @ @ #</text>
+    <text x="140" y="510" opacity=".55">* # % @ # * + =</text>
+  </g>
+</svg>
