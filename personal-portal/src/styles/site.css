@@ -639,9 +639,24 @@
   text-decoration-color: currentColor;
 }
 
+.home-resume-cta .gallery-text-link span {
+  display: inline-block;
+  transform: translate(0);
+  transition: transform var(--transition-fast) ease;
+}
+
 .home-resume-cta .gallery-text-link:hover,
 .home-resume-cta .gallery-text-link:focus-visible {
-  color: var(--color-text);
+  color: var(--color-gallery);
+}
+
+.home-resume-cta .gallery-text-link:hover span,
+.home-resume-cta .gallery-text-link:focus-visible span {
+  transform: translate(0.25rem, -0.0625rem);
+}
+
+.home-resume-cta .gallery-text-link:focus-visible {
+  outline-color: var(--color-gallery);
 }
 
 .vault-page__header {
