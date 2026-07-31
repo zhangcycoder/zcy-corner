@@ -8,7 +8,7 @@ import {
 } from '../content/contentLoader'
 
 const GITHUB_URL = 'https://github.com/zhangcycoder/zcy-corner'
-const CURRENT_FOCUS = ['AI 辅助研发', '前端工程化', '交互体验']
+const CURRENT_FOCUS = ['AI 编排 · 验收门禁', '离线优先的真实产品', '工程判断 > 敲代码']
 
 export default function HomePage() {
   const { i18n } = useTranslation()
@@ -20,10 +20,10 @@ export default function HomePage() {
     <div className="gallery-page home-page">
       <section className="home-hero" aria-labelledby="home-title">
         <div className="home-hero__statement">
-          <p className="home-eyebrow">FRONTEND ENGINEER · DIGITAL BUILDER</p>
-          <h1 id="home-title">构建值得留下的数字体验。</h1>
+          <p className="home-eyebrow">AI-NATIVE ENGINEER · 架构与验收</p>
+          <h1 id="home-title">我编排 AI 造复杂、能跑、且经得起验收的东西。</h1>
           <p className="home-hero__description">
-            这里收录我的技术实践、可复用模块、交互实验和职业经历。
+            差异化不在谁敲代码，而在工程判断，和我为 AI 立起的编排 / 验证 / 门禁体系。这里是能跑的证据。
           </p>
           <div className="home-hero__actions">
             <Link className="gallery-button gallery-button--primary" to="/vault">

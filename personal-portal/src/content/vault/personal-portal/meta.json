@@ -1,7 +1,7 @@
 {
   "slug": "personal-portal",
   "title": { "zh-CN": "个人技术空间", "en-US": "Personal Tech Space" },
-  "summary": { "zh-CN": "一个用于沉淀技术实践、展示作品与承载职业信息的个人网站。", "en-US": "A personal site for technical notes, selected work, and professional context." },
+  "summary": { "zh-CN": "这个站本身就是作品:由 agent 在受治理流程(章程 / 验收门 / 追加式时间线)下持续开发的个人技术空间。它的交互证据就是旗舰 demo——单步回放本站自己的构建循环。", "en-US": "The site is itself the artifact: a personal tech space continuously built by an agent under a governed process (charter, verification gates, append-only timeline). Its interactive proof is the flagship demo that replays this site's own build loop." },
   "type": "project",
   "tags": ["React", "TypeScript", "Vite", "Netlify"],
   "createdAt": "2026-03-12",
