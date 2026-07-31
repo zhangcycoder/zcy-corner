@@ -995,3 +995,68 @@
     gap: 1.25rem;
   }
 }
+
+@page {
+  margin: 16mm;
+}
+
+@media print {
+  html,
+  body,
+  .site-shell,
+  .site-shell[data-scene='paper'] {
+    color: #171716;
+    background: #fff;
+  }
+
+  .site-shell {
+    min-height: auto;
+    display: block;
+  }
+
+  .site-header,
+  .site-footer,
+  .print-hidden {
+    display: none !important;
+  }
+
+  .resume-page.paper-page {
+    width: 100%;
+    max-width: none;
+    min-height: auto;
+    padding: 0;
+  }
+
+  .resume-entry,
+  .resume-entry__details section {
+    break-inside: avoid;
+  }
+
+  .resume-entry:not([open]) > .resume-entry__details {
+    display: grid !important;
+  }
+
+  .resume-entry summary {
+    cursor: default;
+  }
+
+  .resume-entry__toggle {
+    display: none;
+  }
+
+  .resume-links a {
+    color: #171716;
+  }
+
+  .resume-links a::after {
+    content: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    transition: none !important;
+  }
+}
