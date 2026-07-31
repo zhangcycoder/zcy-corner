@@ -745,6 +745,128 @@
   gap: 1rem;
 }
 
+.treasure-detail__preview.gallery-page {
+  padding-top: clamp(4rem, 9vw, 7rem);
+  padding-bottom: clamp(5rem, 10vw, 8rem);
+}
+
+.treasure-detail__preview-header {
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.treasure-detail__preview-header h2 {
+  margin: 0.75rem 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.treasure-detail__preview-header > span {
+  flex: 0 0 auto;
+  color: var(--scene-muted);
+  font: 500 0.625rem/1.4 var(--font-mono);
+  letter-spacing: 0.1em;
+}
+
+.demo-stage,
+.treasure-detail__cover-stage,
+.demo-fallback {
+  min-height: clamp(20rem, 52vw, 38rem);
+  margin: 0;
+  overflow: hidden;
+  background: var(--scene-surface);
+  border: 1px solid var(--scene-line);
+}
+
+.demo-stage {
+  position: relative;
+}
+
+.demo-loading,
+.demo-fallback {
+  display: grid;
+  place-content: center;
+  color: var(--scene-muted);
+  font: 500 0.6875rem/1.6 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.demo-loading {
+  position: absolute;
+  inset: 0;
+}
+
+.demo-fallback p {
+  margin: 0;
+}
+
+.demo-fallback p + p {
+  margin-top: 0.5rem;
+}
+
+.treasure-detail__cover-stage img {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  display: block;
+  object-fit: cover;
+}
+
+.particle-field-demo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--color-gallery);
+}
+
+.particle-field-demo__label {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--color-muted-dark);
+  font: 500 0.625rem/1 var(--font-mono);
+  letter-spacing: 0.12em;
+  pointer-events: none;
+}
+
+.typewriter-effect-demo {
+  min-height: inherit;
+  padding: clamp(2rem, 7vw, 5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  color: var(--color-text);
+  background: var(--color-gallery-elevated);
+}
+
+.typewriter-effect-demo__index {
+  color: var(--color-muted-dark);
+  font: 500 0.625rem/1 var(--font-mono);
+  letter-spacing: 0.14em;
+}
+
+.typewriter-effect-demo__text {
+  min-height: 1.5em;
+  color: var(--color-text);
+  font: 500 clamp(1.5rem, 5vw, 3.75rem)/1.25 var(--font-mono);
+  letter-spacing: -0.04em;
+  text-align: center;
+}
+
 @media (min-width: 40rem) {
   .treasure-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -862,6 +984,12 @@
   }
 
   .vault-page__introduction {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .treasure-detail__preview-header {
     align-items: flex-start;
     flex-direction: column;
     gap: 1.25rem;
