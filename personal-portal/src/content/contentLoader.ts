@@ -49,7 +49,7 @@ export function getPublishedTreasures(): TreasureRecord[] {
 }
 
 /** @name 首页精选策展顺序(② 方法论 → ① 产品 → ③ meta) */
-const FEATURED_ORDER = ['agent-orchestration', 'together-trace', 'personal-portal']
+const FEATURED_ORDER = ['agent-orchestration', 'together-trace', 'personal-portal', 'co-authorship']
 
 /** @name 藏宝阁「早期实验」分区的藏品 */
 export const EARLY_EXPERIMENT_SLUGS = ['particle-field', 'typewriter-effect']

@@ -13,7 +13,7 @@ const CURRENT_FOCUS = ['AI 编排 · 验收门禁', '离线优先的真实产品
 export default function HomePage() {
   const { i18n } = useTranslation()
   const locale = i18n.resolvedLanguage ?? i18n.language
-  const featuredTreasures = getFeaturedTreasures(3)
+  const featuredTreasures = getFeaturedTreasures(4)
   const latestTreasures = getPublishedTreasures().slice(0, 3)
 
   return (
