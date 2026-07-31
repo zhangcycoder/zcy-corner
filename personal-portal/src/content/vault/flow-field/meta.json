@@ -1,0 +1,14 @@
+{
+  "slug": "flow-field",
+  "title": { "zh-CN": "流场墨迹", "en-US": "Flow Field Ink" },
+  "summary": { "zh-CN": "上千粒子沿多频正弦流场流动,低透明度拖尾在纸底上累积成墨迹,指针或触摸扰动局部流向。", "en-US": "Hundreds of particles ride a multi-frequency sine flow field, their low-opacity trails settling into ink; pointer or touch bends the local flow." },
+  "type": "demo",
+  "tags": ["Canvas", "Generative", "Flow Field"],
+  "createdAt": "2026-07-31",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": false,
+  "cover": "/covers/flow-field.svg",
+  "demoKey": "flow-field",
+  "sourceUrl": "https://github.com/zhangcycoder/zcy-corner/blob/dev_1/personal-portal/src/demos/flow-field/index.tsx"
+}

@@ -1,0 +1,14 @@
+{
+  "slug": "co-authorship",
+  "title": { "zh-CN": "共建脉络", "en-US": "Co-Authorship Graph" },
+  "summary": { "zh-CN": "力导向图谱:把 ZCY 与 Claude 共建的每件东西连成一张网,拖动任意节点,整张网跟着重新找平衡。由 Claude 设计与实现。", "en-US": "A force-directed graph wiring every ZCY × Claude co-build into one web — drag any node and the whole net re-settles. Designed and built by Claude." },
+  "type": "demo",
+  "tags": ["Canvas", "Force Graph", "协作"],
+  "createdAt": "2026-07-31",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": true,
+  "cover": "/covers/co-authorship.svg",
+  "demoKey": "co-authorship",
+  "sourceUrl": "https://github.com/zhangcycoder/zcy-corner/blob/dev_1/personal-portal/src/demos/co-authorship/index.tsx"
+}

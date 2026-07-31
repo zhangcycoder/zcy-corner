@@ -1,0 +1,14 @@
+{
+  "slug": "generative-poster",
+  "title": { "zh-CN": "生成海报", "en-US": "Generative Poster" },
+  "summary": { "zh-CN": "seed 驱动的确定性几何构成海报,一键换一张,可导出 PNG 带走。", "en-US": "Seed-driven deterministic geometric posters — reroll for a new one, export the PNG to keep." },
+  "type": "demo",
+  "tags": ["Canvas", "Generative", "Seed"],
+  "createdAt": "2026-07-31",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": false,
+  "cover": "/covers/generative-poster.svg",
+  "demoKey": "generative-poster",
+  "sourceUrl": "https://github.com/zhangcycoder/zcy-corner/blob/dev_1/personal-portal/src/demos/generative-poster/index.tsx"
+}

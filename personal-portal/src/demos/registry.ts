@@ -1,12 +1,24 @@
 import type { ComponentType } from 'react'
 
-export type DemoKey = 'particle-field' | 'typewriter-effect'
+export type DemoKey =
+  | 'particle-field'
+  | 'typewriter-effect'
+  | 'flow-field'
+  | 'ascii-art'
+  | 'generative-poster'
+  | 'physics-sandbox'
+  | 'co-authorship'
 
 type DemoLoader = () => Promise<{ default: ComponentType }>
 
 const demoLoaders: Record<DemoKey, DemoLoader> = {
   'particle-field': () => import('./particle-field'),
   'typewriter-effect': () => import('./typewriter-effect'),
+  'flow-field': () => import('./flow-field'),
+  'ascii-art': () => import('./ascii-art'),
+  'generative-poster': () => import('./generative-poster'),
+  'physics-sandbox': () => import('./physics-sandbox'),
+  'co-authorship': () => import('./co-authorship'),
 }
 
 /**

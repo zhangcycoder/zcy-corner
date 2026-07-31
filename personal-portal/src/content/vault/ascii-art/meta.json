@@ -1,0 +1,14 @@
+{
+  "slug": "ascii-art",
+  "title": { "zh-CN": "交互式 ASCII 艺术", "en-US": "Interactive ASCII Art" },
+  "summary": { "zh-CN": "Canvas 字符网格按亮度场实时选字,中心波纹叠加指针照亮,鼠标或触摸拨动整片图案。", "en-US": "A Canvas character grid picks glyphs by a brightness field — center ripples plus a pointer glow you can stir with mouse or touch." },
+  "type": "demo",
+  "tags": ["Canvas", "ASCII", "Interactive"],
+  "createdAt": "2026-07-31",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": false,
+  "cover": "/covers/ascii-art.svg",
+  "demoKey": "ascii-art",
+  "sourceUrl": "https://github.com/zhangcycoder/zcy-corner/blob/dev_1/personal-portal/src/demos/ascii-art/index.tsx"
+}

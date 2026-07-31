@@ -1,0 +1,14 @@
+{
+  "slug": "physics-sandbox",
+  "title": { "zh-CN": "物理沙盘", "en-US": "Physics Sandbox" },
+  "summary": { "zh-CN": "Verlet 积分模拟的一块布料,顶边部分固定、其余在重力下垂坠,可用鼠标或手指抓起节点拖拽。", "en-US": "A Verlet-integrated cloth pinned along the top and sagging under gravity — grab any node and drag it with mouse or finger." },
+  "type": "demo",
+  "tags": ["Canvas", "Physics", "Verlet"],
+  "createdAt": "2026-07-31",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": false,
+  "cover": "/covers/physics-sandbox.svg",
+  "demoKey": "physics-sandbox",
+  "sourceUrl": "https://github.com/zhangcycoder/zcy-corner/blob/dev_1/personal-portal/src/demos/physics-sandbox/index.tsx"
+}
