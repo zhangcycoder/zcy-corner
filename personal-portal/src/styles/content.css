@@ -753,4 +753,13 @@
     display: block;
     overflow-x: auto;
   }
+
+  /* 窄屏让配置代码块折行,免去逐块横向拖动;内容是文本配置,折行无损 */
+  .prose-content pre {
+    padding: 1rem;
+    font-size: 0.75rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
 }
