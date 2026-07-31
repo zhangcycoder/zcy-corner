@@ -1,0 +1,19 @@
+{
+  "slug": "agent-orchestration",
+  "title": {
+    "zh-CN": "Agent 编排体系 — 我如何指挥 AI 造高质量代码",
+    "en-US": "Agent Orchestration — How I Direct AI to Ship Quality Code"
+  },
+  "summary": {
+    "zh-CN": "一套让 AI 在我的门禁下稳定产出的编排/验收体系:上下文基线、可验证目标、验证门、人类判断门、追加式时间线。这个 demo 回放本站自身如何被造。",
+    "en-US": "An orchestration/acceptance system that keeps AI productive under my gates: context baseline, verifiable goals, verification gates, human-judgment gate, append-only timeline. This demo replays how this very site is built."
+  },
+  "type": "project",
+  "tags": ["AI 编排", "工程治理", "验收门禁", "方法论"],
+  "createdAt": "2026-07-31",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": true,
+  "cover": "/covers/agent-orchestration.svg",
+  "demoKey": "agent-orchestration"
+}

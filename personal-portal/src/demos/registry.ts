@@ -1,12 +1,13 @@
 import type { ComponentType } from 'react'
 
-export type DemoKey = 'particle-field' | 'typewriter-effect'
+export type DemoKey = 'particle-field' | 'typewriter-effect' | 'agent-orchestration'
 
 type DemoLoader = () => Promise<{ default: ComponentType }>
 
 const demoLoaders: Record<DemoKey, DemoLoader> = {
   'particle-field': () => import('./particle-field'),
   'typewriter-effect': () => import('./typewriter-effect'),
+  'agent-orchestration': () => import('./agent-orchestration'),
 }
 
 /**

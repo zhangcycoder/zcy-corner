@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
+  <rect width="1200" height="720" fill="#0b0c0f"/>
+  <g fill="none" stroke="#23262f" stroke-width="1.5">
+    <path d="M120 360H1080"/>
+  </g>
+  <g font-family="SFMono-Regular, ui-monospace, monospace" fill="#68645d" font-size="26" font-weight="600">
+    <text x="120" y="330">01 基线 → 02 意图 → 03 实现 → 04 验证门 → 05 判断门 → 06 提交</text>
+  </g>
+  <g>
+    <circle cx="120" cy="360" r="9" fill="#7188ff"/>
+    <circle cx="312" cy="360" r="9" fill="#7188ff"/>
+    <circle cx="504" cy="360" r="9" fill="#7188ff"/>
+    <circle cx="696" cy="360" r="12" fill="#7188ff"/>
+    <circle cx="888" cy="360" r="9" fill="#5566d8"/>
+    <circle cx="1080" cy="360" r="9" fill="#5566d8"/>
+  </g>
+  <text x="120" y="430" font-family="PingFang SC, system-ui, sans-serif" fill="#f0f0ec" font-size="46" font-weight="600">Agent 编排 · 验收门禁</text>
+  <text x="120" y="474" font-family="PingFang SC, system-ui, sans-serif" fill="#97999f" font-size="24">我主导架构与验收,AI 在门禁下实现</text>
+</svg>
