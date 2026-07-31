@@ -30,6 +30,10 @@ export function usePageMeta({ title, description, image }: PageMeta): void {
     upsert('meta[name="description"]', 'content', description)
     upsert('meta[property="og:title"]', 'content', title)
     upsert('meta[property="og:description"]', 'content', description)
-    if (image) upsert('meta[property="og:image"]', 'content', image)
+    if (image) {
+      upsert('meta[property="og:image"]', 'content', image)
+    } else {
+      document.head.querySelector('meta[property="og:image"]')?.remove()
+    }
   }, [description, image, title])
 }

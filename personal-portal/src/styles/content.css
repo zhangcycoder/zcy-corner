@@ -32,3 +32,28 @@
 .paper-page {
   max-width: calc(var(--reading-width) + (var(--space-page) * 2));
 }
+
+.not-found-page__description {
+  max-width: 32rem;
+  margin: 2rem 0 0;
+  color: var(--scene-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.not-found-page__link {
+  margin-top: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--scene-text);
+  font: 600 0.75rem/1 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.5rem;
+  transition: color var(--transition-fast) ease;
+}
+
+.not-found-page__link:hover {
+  color: var(--color-accent);
+}
