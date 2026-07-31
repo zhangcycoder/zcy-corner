@@ -56,4 +56,4 @@ npm run preview
 - Build command：`npm run build`
 - Publish directory：`dist`
 
-Netlify 凭据仅保存在本地且不纳入版本控制；仓库不会公开登录邮箱或账号凭据。
+Netlify 认证凭据不纳入版本控制；站点源码不记录 Netlify 登录账号或认证信息。
