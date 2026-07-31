@@ -10,6 +10,7 @@ export type DemoKey =
   | 'generative-poster'
   | 'physics-sandbox'
   | 'co-authorship'
+  | 'streaming-ui'
 
 type DemoLoader = () => Promise<{ default: ComponentType }>
 
@@ -23,6 +24,7 @@ const demoLoaders: Record<DemoKey, DemoLoader> = {
   'generative-poster': () => import('./generative-poster'),
   'physics-sandbox': () => import('./physics-sandbox'),
   'co-authorship': () => import('./co-authorship'),
+  'streaming-ui': () => import('./streaming-ui'),
 }
 
 /**

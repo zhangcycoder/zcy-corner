@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
+  <rect width="1200" height="720" fill="#0b0c0f"/>
+  <g font-family="SFMono-Regular, ui-monospace, Consolas, monospace" font-size="30" fill="#f0f0ec">
+    <text x="120" y="250">token 逐字到达,</text>
+    <text x="120" y="320">前端边到边渲,</text>
+    <text x="120" y="390" fill="#97999f">把等待变成进展<tspan fill="#7188ff">▍</tspan></text>
+  </g>
+  <g stroke="#7188ff" stroke-width="1.4" opacity=".45" fill="none">
+    <path d="M120 470 H 1080"/>
+    <path d="M120 510 H 900"/>
+    <path d="M120 550 H 1000"/>
+  </g>
+</svg>

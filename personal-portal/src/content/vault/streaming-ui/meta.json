@@ -1,0 +1,14 @@
+{
+  "slug": "streaming-ui",
+  "title": { "zh-CN": "流式生成 UI", "en-US": "Streaming UI" },
+  "summary": { "zh-CN": "把 LLM 的逐 token 输出优雅地接进界面:增量渲染、跳动光标、滚动锚定、随时可中断。本 demo 用客户端模拟的 token 流演示这一前端模式,不触网、不调用真实模型。", "en-US": "Gracefully receive an LLM's token stream in the UI: incremental render, blinking caret, scroll anchoring, interruptible. This demo simulates the stream client-side — no network, no real model call." },
+  "type": "demo",
+  "tags": ["AI 交互", "流式渲染", "前端工程"],
+  "createdAt": "2026-07-31",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": false,
+  "cover": "/covers/streaming-ui.svg",
+  "demoKey": "streaming-ui",
+  "sourceUrl": "https://github.com/zhangcycoder/zcy-corner/blob/dev_1/personal-portal/src/demos/streaming-ui/index.tsx"
+}
