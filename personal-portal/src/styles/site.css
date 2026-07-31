@@ -1181,3 +1181,64 @@
 .vault-page__early-head { margin-bottom: 1.5rem; }
 .vault-page__early-head h2 { margin: 0.25rem 0 0.5rem; }
 .vault-page__early-head p { margin: 0; color: var(--color-muted-dark); max-width: var(--reading-width); }
+
+/* Together Trace 离线优先 demo */
+.tt-offline {
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  color: var(--color-text);
+  background: var(--color-gallery-elevated);
+  font-family: var(--font-sans);
+}
+
+.tt-offline__bar { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.tt-offline__status { color: var(--color-muted-dark); font: 500 0.8125rem/1 var(--font-mono); }
+.tt-offline__status.is-online { color: var(--color-accent); }
+.tt-offline__pending {
+  padding: 0.125rem 0.5rem;
+  border: 1px solid color-mix(in srgb, #d2a046 55%, transparent);
+  border-radius: 999px;
+  color: #d2a046;
+  font: 500 0.6875rem/1.4 var(--font-mono);
+}
+
+.tt-offline__toggle,
+.tt-offline__add {
+  padding: 0.4375rem 0.75rem;
+  border: 1px solid var(--color-line-dark);
+  border-radius: 0.375rem;
+  background: transparent;
+  color: var(--color-text);
+  font: 500 0.8125rem/1 var(--font-sans);
+  cursor: pointer;
+  transition: border-color var(--transition-fast) ease;
+}
+.tt-offline__toggle { margin-left: auto; }
+.tt-offline__toggle:hover, .tt-offline__add:hover { border-color: var(--color-accent); }
+
+.tt-offline__compose { display: flex; gap: 0.5rem; }
+.tt-offline__input {
+  flex: 1;
+  padding: 0.4375rem 0.625rem;
+  border: 1px solid var(--color-line-dark);
+  border-radius: 0.375rem;
+  background: var(--color-gallery);
+  color: var(--color-text);
+  font: 400 0.875rem/1.4 var(--font-sans);
+}
+
+.tt-offline__list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.375rem; }
+.tt-offline__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-line-dark);
+  border-radius: 0.375rem;
+}
+.tt-offline__tag { font: 500 0.6875rem/1 var(--font-mono); color: #d2a046; }
+.tt-offline__tag.is-synced { color: var(--color-accent); }
+.tt-offline__note { margin: 0; color: var(--color-muted-dark); font-size: 0.8125rem; line-height: 1.6; }
