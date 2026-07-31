@@ -1,0 +1,14 @@
+{
+  "slug": "markov",
+  "title": { "zh-CN": "马尔可夫文本生成器", "en-US": "Markov Text Generator" },
+  "summary": { "zh-CN": "运行时在选中的中文语料上现算一条字符级 n-gram 马尔可夫链:统计每个前缀后面下一个字的频次,再按可调的阶数与温度采样生成文本。阶数越高越贴近原文,温度越高越发散。它只有局部统计、没有理解,所以读起来常常局部通顺、整体离谱。模型全部本地手写,不联网、不加载任何库。", "en-US": "A character-level n-gram Markov chain built at runtime over the shown Chinese corpus — it counts which character follows each prefix, then samples text with adjustable order and temperature. Higher order hugs the source, higher temperature diverges. It has only local statistics, no understanding, so the output reads locally fluent but globally incoherent. Built by hand, no network, no library." },
+  "type": "demo",
+  "tags": ["生成式", "马尔可夫", "文本生成"],
+  "createdAt": "2026-07-31",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": false,
+  "cover": "/covers/markov.svg",
+  "demoKey": "markov",
+  "sourceUrl": "https://github.com/zhangcycoder/zcy-corner/blob/dev_1/personal-portal/src/demos/markov/index.tsx"
+}

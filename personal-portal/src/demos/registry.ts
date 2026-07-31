@@ -12,6 +12,7 @@ export type DemoKey =
   | 'co-authorship'
   | 'streaming-ui'
   | 'neural-net'
+  | 'markov'
 
 type DemoLoader = () => Promise<{ default: ComponentType }>
 
@@ -27,6 +28,7 @@ const demoLoaders: Record<DemoKey, DemoLoader> = {
   'co-authorship': () => import('./co-authorship'),
   'streaming-ui': () => import('./streaming-ui'),
   'neural-net': () => import('./neural-net'),
+  'markov': () => import('./markov'),
 }
 
 /**

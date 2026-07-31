@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
+  <rect width="1200" height="720" fill="#0b0c0f"/>
+  <defs>
+    <marker id="mk-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#7188ff"/>
+    </marker>
+  </defs>
+  <g font-family="SFMono-Regular, ui-monospace, Consolas, monospace" fill="#97999f" font-size="26">
+    <text x="90" y="120">P(next | prev n chars)</text>
+    <text x="90" y="640" fill="#7188ff">char-level n-gram · sampled, not scripted</text>
+  </g>
+  <!-- 状态间转移(带概率权重) -->
+  <g stroke="#7188ff" fill="none" stroke-width="2" marker-end="url(#mk-arrow)">
+    <path d="M300 300 C 400 230, 520 230, 610 292" opacity=".85"/>
+    <path d="M300 300 C 400 380, 520 380, 610 322" opacity=".5"/>
+    <path d="M690 300 C 780 230, 900 230, 980 292" opacity=".7"/>
+    <path d="M690 320 C 780 420, 900 420, 985 372" opacity=".38"/>
+  </g>
+  <!-- 自环 -->
+  <path d="M980 300 C 1090 240, 1110 400, 1010 372" fill="none" stroke="#7188ff" stroke-width="2" opacity=".55" marker-end="url(#mk-arrow)"/>
+  <!-- 转移概率标注 -->
+  <g font-family="SFMono-Regular, ui-monospace, Consolas, monospace" fill="#97999f" font-size="20">
+    <text x="430" y="250">.62</text>
+    <text x="430" y="372">.31</text>
+    <text x="805" y="250">.48</text>
+    <text x="1080" y="320">.19</text>
+  </g>
+  <!-- 状态节点 -->
+  <g>
+    <circle cx="270" cy="300" r="34" fill="#15171c" stroke="#7188ff" stroke-width="2"/>
+    <circle cx="650" cy="310" r="40" fill="#15171c" stroke="#7188ff" stroke-width="2"/>
+    <circle cx="1000" cy="330" r="34" fill="#7188ff"/>
+  </g>
+  <g font-family="SFMono-Regular, ui-monospace, Consolas, monospace" font-size="30" text-anchor="middle">
+    <text x="270" y="310" fill="#f0f0ec">生成</text>
+    <text x="650" y="321" fill="#f0f0ec">式模</text>
+    <text x="1000" y="341" fill="#0b0c0f">型</text>
+  </g>
+  <!-- 温度刻度母题 -->
+  <g transform="translate(90 470)">
+    <text font-family="SFMono-Regular, ui-monospace, Consolas, monospace" fill="#97999f" font-size="20" x="0" y="-14">temperature</text>
+    <rect x="0" y="0" width="1020" height="10" rx="5" fill="#282a2f"/>
+    <rect x="0" y="0" width="640" height="10" rx="5" fill="#7188ff"/>
+    <circle cx="640" cy="5" r="12" fill="#f0f0ec" stroke="#7188ff" stroke-width="2"/>
+  </g>
+</svg>
