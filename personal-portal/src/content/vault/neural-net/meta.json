@@ -1,0 +1,14 @@
+{
+  "slug": "neural-net",
+  "title": { "zh-CN": "浏览器里的神经网络", "en-US": "Neural Net in the Browser" },
+  "summary": { "zh-CN": "一个从零手写的两层神经网络(2 → tanh 隐藏层 → sigmoid),用真实反向传播在浏览器里实时训练一个线性不可分的二分类任务,决策边界随训练肉眼可见地弯曲。纯本地 JS 数学,不联网、不加载任何机器学习库。", "en-US": "A 2-layer neural net (2 → tanh hidden → sigmoid) written from scratch, trained live in the browser with real backprop on a non-linearly-separable task — watch the decision boundary bend as it learns. Plain local JS math, no network, no ML library." },
+  "type": "demo",
+  "tags": ["机器学习", "神经网络", "可视化"],
+  "createdAt": "2026-07-31",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": false,
+  "cover": "/covers/neural-net.svg",
+  "demoKey": "neural-net",
+  "sourceUrl": "https://github.com/zhangcycoder/zcy-corner/blob/dev_1/personal-portal/src/demos/neural-net/index.tsx"
+}

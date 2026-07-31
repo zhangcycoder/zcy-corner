@@ -11,6 +11,7 @@ export type DemoKey =
   | 'physics-sandbox'
   | 'co-authorship'
   | 'streaming-ui'
+  | 'neural-net'
 
 type DemoLoader = () => Promise<{ default: ComponentType }>
 
@@ -25,6 +26,7 @@ const demoLoaders: Record<DemoKey, DemoLoader> = {
   'physics-sandbox': () => import('./physics-sandbox'),
   'co-authorship': () => import('./co-authorship'),
   'streaming-ui': () => import('./streaming-ui'),
+  'neural-net': () => import('./neural-net'),
 }
 
 /**
