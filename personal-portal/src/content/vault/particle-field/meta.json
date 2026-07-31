@@ -1,0 +1,14 @@
+{
+  "slug": "particle-field",
+  "title": { "zh-CN": "Canvas 粒子力场", "en-US": "Canvas Particle Field" },
+  "summary": { "zh-CN": "一个支持指针排斥、边界反弹和降级显示的 Canvas 粒子实验。", "en-US": "A Canvas particle experiment with pointer repulsion, boundary bounce, and graceful fallback." },
+  "type": "demo",
+  "tags": ["Canvas", "React", "Animation"],
+  "createdAt": "2026-03-12",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": true,
+  "cover": "/covers/particle-field.svg",
+  "demoKey": "particle-field",
+  "sourceUrl": "https://github.com/zhangcycoder/zcy-corner/blob/dev_1/personal-portal/src/components/ParticleSystem.tsx"
+}

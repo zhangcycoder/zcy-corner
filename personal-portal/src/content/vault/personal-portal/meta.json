@@ -1,0 +1,14 @@
+{
+  "slug": "personal-portal",
+  "title": { "zh-CN": "个人技术空间", "en-US": "Personal Tech Space" },
+  "summary": { "zh-CN": "一个用于沉淀技术实践、展示作品与承载职业信息的个人网站。", "en-US": "A personal site for technical notes, selected work, and professional context." },
+  "type": "project",
+  "tags": ["React", "TypeScript", "Vite", "Netlify"],
+  "createdAt": "2026-03-12",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": true,
+  "cover": "/covers/personal-portal.svg",
+  "sourceUrl": "https://github.com/zhangcycoder/zcy-corner",
+  "externalUrl": "https://amazing-chebakia-758e0e.netlify.app/"
+}

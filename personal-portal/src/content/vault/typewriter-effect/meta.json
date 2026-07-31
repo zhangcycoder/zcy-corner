@@ -1,0 +1,14 @@
+{
+  "slug": "typewriter-effect",
+  "title": { "zh-CN": "循环打字机模块", "en-US": "Looping Typewriter Module" },
+  "summary": { "zh-CN": "一个使用 reducer 状态机控制输入、停顿、删除和循环阶段的文字模块。", "en-US": "A reducer-driven text module for typing, pausing, deleting, and looping." },
+  "type": "module",
+  "tags": ["React", "Reducer", "Animation"],
+  "createdAt": "2026-03-12",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": true,
+  "cover": "/covers/typewriter-effect.svg",
+  "demoKey": "typewriter-effect",
+  "sourceUrl": "https://github.com/zhangcycoder/zcy-corner/blob/dev_1/personal-portal/src/components/Typewriter.tsx"
+}
