@@ -1027,20 +1027,22 @@
     padding: 0;
   }
 
-  .resume-entry,
-  .resume-entry__details section {
+  .resume-work-item,
+  .resume-project,
+  .resume-project__details section,
+  .resume-education__item {
     break-inside: avoid;
   }
 
-  .resume-entry:not([open]) > .resume-entry__details {
+  .resume-project:not([open]) > .resume-project__details {
     display: grid !important;
   }
 
-  .resume-entry summary {
+  .resume-project summary {
     cursor: default;
   }
 
-  .resume-entry__toggle {
+  .resume-project__toggle {
     display: none;
   }
 

@@ -1,0 +1,13 @@
+{
+  "slug": "supet-industrial-platform",
+  "title": { "zh-CN": "supET 工业互联网平台", "en-US": "supET Industrial Internet Platform" },
+  "summary": { "zh-CN": "一份关于工业区域云、边缘控制台、低代码组态与 CMS 前端建设的历史参与记录。", "en-US": "A historical contribution record covering industrial cloud, edge consoles, low-code configuration, and CMS frontend work." },
+  "type": "project",
+  "tags": ["React", "Industrial IoT", "Edge Computing", "CMS"],
+  "createdAt": "2021-04-01",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": true,
+  "cover": "/covers/supet-industrial-platform.svg",
+  "externalUrl": "https://www.supet.com/home"
+}

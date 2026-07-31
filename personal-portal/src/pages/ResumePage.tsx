@@ -27,14 +27,14 @@ export default function ResumePage() {
             <h1>{profile.displayName}</h1>
             <p className="resume-identity__role">{profile.role}</p>
           </div>
-          <p className="resume-identity__location">{profile.location}</p>
         </div>
 
         <p className="resume-hero__headline">{profile.headline}</p>
         <p className="resume-hero__summary">{profile.summary}</p>
+        <p className="resume-source-note">{profile.sourceNote}</p>
 
         <div className="resume-hero__metadata">
-          <ul className="resume-focus" aria-label="当前关注方向">
+          <ul className="resume-focus" aria-label="技术方向">
             {profile.focus.map((item) => (
               <li key={item}>{item}</li>
             ))}
@@ -74,55 +74,71 @@ export default function ResumePage() {
         </div>
       </section>
 
-      <section className="resume-section" aria-labelledby="resume-experience-title">
+      <section className="resume-section" aria-labelledby="resume-work-title">
         <div className="resume-section__heading">
           <p>02 / EXPERIENCE</p>
-          <h2 id="resume-experience-title">实践经历</h2>
+          <h2 id="resume-work-title">工作经历</h2>
         </div>
-        <div className="resume-entries">
-          {profile.entries.map((entry) => (
-            <details key={entry.id} className="resume-entry">
+        <ol className="resume-work-list">
+          {profile.workExperience.map((entry) => (
+            <li key={entry.id} className="resume-work-item">
+              <span className="resume-work-item__period">{entry.period}</span>
+              <div className="resume-work-item__body">
+                <div className="resume-work-item__heading">
+                  <h3>{entry.role}</h3>
+                  <p>{entry.organization}</p>
+                </div>
+                <p className="resume-work-item__summary">{entry.summary}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="resume-section" aria-labelledby="resume-projects-title">
+        <div className="resume-section__heading">
+          <p>03 / SELECTED WORK</p>
+          <h2 id="resume-projects-title">代表技术项目</h2>
+        </div>
+        <div className="resume-projects">
+          {profile.projects.map((project) => (
+            <details key={project.id} className="resume-project">
               <summary>
-                <span className="resume-entry__period">{entry.period}</span>
-                <span className="resume-entry__heading">
-                  <span className="resume-entry__role">{entry.role}</span>
-                  <span className="resume-entry__organization">
-                    {entry.organization}
-                  </span>
-                </span>
-                <span className="resume-entry__summary">{entry.summary}</span>
-                <span className="resume-entry__toggle" aria-hidden="true">
-                  <span className="resume-entry__expand">展开详情 ＋</span>
-                  <span className="resume-entry__collapse">收起详情 −</span>
+                <span className="resume-project__domain">{project.domain}</span>
+                <span className="resume-project__title">{project.title}</span>
+                <span className="resume-project__summary">{project.summary}</span>
+                <span className="resume-project__toggle" aria-hidden="true">
+                  <span className="resume-project__expand">展开详情 ＋</span>
+                  <span className="resume-project__collapse">收起详情 −</span>
                 </span>
               </summary>
 
-              <div className="resume-entry__details">
+              <div className="resume-project__details">
                 <section>
                   <h3>背景</h3>
-                  <p>{entry.background}</p>
+                  <p>{project.background}</p>
                 </section>
                 <section>
-                  <h3>行动</h3>
+                  <h3>我的参与</h3>
                   <ul>
-                    {entry.actions.map((action) => (
-                      <li key={action}>{action}</li>
+                    {project.contributions.map((contribution) => (
+                      <li key={contribution}>{contribution}</li>
                     ))}
                   </ul>
                 </section>
                 <section>
-                  <h3>挑战</h3>
+                  <h3>工程挑战</h3>
                   <ul>
-                    {entry.challenges.map((challenge) => (
+                    {project.challenges.map((challenge) => (
                       <li key={challenge}>{challenge}</li>
                     ))}
                   </ul>
                 </section>
                 <section>
-                  <h3>结果</h3>
+                  <h3>完成范围</h3>
                   <ul>
-                    {entry.results.map((result) => (
-                      <li key={result}>{result}</li>
+                    {project.completedScope.map((item) => (
+                      <li key={item}>{item}</li>
                     ))}
                   </ul>
                 </section>
@@ -130,6 +146,24 @@ export default function ResumePage() {
             </details>
           ))}
         </div>
+      </section>
+
+      <section className="resume-section" aria-labelledby="resume-education-title">
+        <div className="resume-section__heading">
+          <p>04 / EDUCATION</p>
+          <h2 id="resume-education-title">教育经历</h2>
+        </div>
+        <ol className="resume-education">
+          {profile.education.map((entry) => (
+            <li key={entry.id} className="resume-education__item">
+              <span>{entry.period}</span>
+              <div>
+                <h3>{entry.organization}</h3>
+                <p>{entry.field}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </section>
     </article>
   )

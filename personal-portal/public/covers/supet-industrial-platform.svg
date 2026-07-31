@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#34363b" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4b4e54"/>
+      <stop offset="1" stop-color="#24262b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="#0b0c0f"/>
+  <rect width="1200" height="720" fill="url(#grid)" opacity=".72"/>
+  <path d="M0 572h1200M150 0v720M1050 0v720" fill="none" stroke="#202227" stroke-width="28"/>
+  <g fill="url(#steel)" stroke="#686b72" stroke-width="2">
+    <path d="M196 178h248v138H196z"/>
+    <path d="M756 118h256v190H756z"/>
+    <path d="M474 418h250v162H474z"/>
+  </g>
+  <g fill="none" stroke="#8b8e94" stroke-width="18">
+    <path d="M444 246h112v106h330v66"/>
+    <path d="M320 316v190h154"/>
+    <path d="M724 500h290"/>
+  </g>
+  <g fill="#0b0c0f" stroke="#c66a2b" stroke-width="10">
+    <circle cx="556" cy="246" r="26"/>
+    <circle cx="886" cy="352" r="26"/>
+    <circle cx="320" cy="506" r="26"/>
+    <circle cx="1014" cy="500" r="26"/>
+  </g>
+  <g fill="#f07a2d">
+    <circle cx="556" cy="246" r="10"/>
+    <circle cx="886" cy="352" r="10"/>
+    <circle cx="320" cy="506" r="10"/>
+    <circle cx="1014" cy="500" r="10"/>
+    <path d="M220 202h86v12h-86zM780 144h110v12H780zM500 446h92v12h-92z"/>
+  </g>
+  <circle cx="724" cy="500" r="18" fill="#7188ff"/>
+  <circle cx="724" cy="500" r="42" fill="none" stroke="#7188ff" stroke-width="3" opacity=".45"/>
+</svg>
