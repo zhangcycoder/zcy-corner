@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
+  <defs>
+    <pattern id="tt-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#1b1d24" stroke-width="1"/>
+    </pattern>
+    <pattern id="tt-grid-major" width="192" height="192" patternUnits="userSpaceOnUse">
+      <path d="M192 0H0V192" fill="none" stroke="#23262f" stroke-width="1.5"/>
+    </pattern>
+    <linearGradient id="tt-blue" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#5566d8"/>
+      <stop offset="1" stop-color="#7188ff"/>
+    </linearGradient>
+    <linearGradient id="tt-warm" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e0a15c"/>
+      <stop offset="1" stop-color="#c9823f"/>
+    </linearGradient>
+    <radialGradient id="tt-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7188ff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#7188ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="720" fill="#0b0c0f"/>
+  <rect width="1200" height="720" fill="url(#tt-grid)" opacity=".7"/>
+  <rect width="1200" height="720" fill="url(#tt-grid-major)" opacity=".8"/>
+
+  <!-- abstract contour hints, not a real map -->
+  <g fill="none" stroke="#181a20" stroke-width="2">
+    <path d="M0 540c180-40 300 40 470 10s280-120 460-90 200 70 270 40"/>
+    <path d="M0 240c200 30 260-70 430-60s300 120 470 80 220-90 300-60"/>
+  </g>
+
+  <!-- convergence glow -->
+  <circle cx="720" cy="384" r="150" fill="url(#tt-glow)"/>
+
+  <!-- track A: blue route -->
+  <path d="M118 606C266 566 300 470 442 448S626 428 720 384"
+        fill="none" stroke="url(#tt-blue)" stroke-width="7" stroke-linecap="round"/>
+  <!-- track B: warm route -->
+  <path d="M1082 132C946 196 902 300 806 342S760 362 720 384"
+        fill="none" stroke="url(#tt-warm)" stroke-width="7" stroke-linecap="round" stroke-dasharray="2 16"/>
+
+  <!-- nodes on track A -->
+  <g fill="#0b0c0f" stroke="#7188ff" stroke-width="5">
+    <circle cx="118" cy="606" r="16"/>
+    <circle cx="300" cy="502" r="13"/>
+    <circle cx="442" cy="448" r="13"/>
+    <circle cx="600" cy="412" r="13"/>
+  </g>
+  <!-- nodes on track B -->
+  <g fill="#0b0c0f" stroke="#e0a15c" stroke-width="5">
+    <circle cx="1082" cy="132" r="16"/>
+    <circle cx="902" cy="300" r="13"/>
+    <circle cx="806" cy="342" r="13"/>
+  </g>
+
+  <!-- convergence point: the two tracks meet -->
+  <circle cx="720" cy="384" r="30" fill="#0b0c0f" stroke="#c9d2ff" stroke-width="6"/>
+  <circle cx="720" cy="384" r="12" fill="#7188ff"/>
+</svg>

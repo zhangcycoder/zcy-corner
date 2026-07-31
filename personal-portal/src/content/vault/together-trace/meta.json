@@ -1,0 +1,19 @@
+{
+  "slug": "together-trace",
+  "title": {
+    "zh-CN": "Together Trace — 离线优先的双人记忆地图",
+    "en-US": "Together Trace — An Offline-First Shared Memory Map"
+  },
+  "summary": {
+    "zh-CN": "为异地情侣设计的离线优先共同记忆地图，覆盖轨迹采集、本地存储、私密同步与双人空间协作。",
+    "en-US": "An offline-first shared memory map for couples, combining trip tracking, local persistence, private sync, and two-person collaboration."
+  },
+  "type": "project",
+  "tags": ["React", "TypeScript", "Offline First", "Cloudflare"],
+  "createdAt": "2026-06-15",
+  "updatedAt": "2026-07-31",
+  "status": "published",
+  "featured": true,
+  "cover": "/covers/together-trace.svg",
+  "externalUrl": "https://together-trace.pages.dev"
+}
